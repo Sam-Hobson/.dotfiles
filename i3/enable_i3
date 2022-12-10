@@ -1,0 +1,2 @@
+systemctl mask plasma-kwin_x11.service --user
+systemctl enable plasma-i3 --user
