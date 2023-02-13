@@ -70,7 +70,9 @@ lua <<EOF
   -- dofile "/home/sam/.config/nvim/lua/tabbar.lua"
   -- require'colorizer'.setup()
   require("which-key").setup{}
-  dofile "/home/sam/.config/nvim/lua/marksConf.lua"
+  dofile "/home/sam/.config/nvim/lua/fidgetConf.lua"
+  dofile "/home/sam/.config/nvim/lua/betterTerminal.lua"
+  --dofile "/home/sam/.config/nvim/lua/marksConf.lua"
   dofile "/home/sam/.config/nvim/lua/dressingConf.lua"
   dofile "/home/sam/.config/nvim/lua/lspConf.lua"
   dofile "/home/sam/.config/nvim/lua/cmpConf.lua"
@@ -87,9 +89,9 @@ lua <<EOF
   dofile "/home/sam/.config/nvim/lua/linterConf.lua"
   dofile "/home/sam/.config/nvim/lua/lspSigConf.lua"
   dofile "/home/sam/.config/nvim/lua/theme.lua"
+  dofile "/home/sam/.config/nvim/lua/indent.lua"
   require("luasnip.loaders.from_snipmate").lazy_load()
 EOF
 
 " Colour scheme
 colorscheme tokyonight-night
-

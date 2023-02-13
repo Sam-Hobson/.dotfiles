@@ -13,8 +13,8 @@ vmap m grn
 vmap M grm
 
 " Go to start of line
-nnoremap - _
-nnoremap _ -
+noremap - _
+noremap _ -
 
 " Fold
 nnoremap za zA
@@ -22,7 +22,6 @@ nnoremap zA za
 
 " Git
 nmap <leader>gg :Gitsigns toggle_signs<CR>
-nnoremap <silent> <leader>og :term gitui<CR>
 nmap <leader>gb :Gitsigns blame_line<CR>
 nmap <leader>gn :Gitsigns next_hunk<CR>
 nmap <leader>gN :Gitsigns prev_hunk<CR>
@@ -87,6 +86,10 @@ nmap <leader>[ :tabprev<CR>
 nmap <leader>] :tabnext<CR>
 nmap <leader>tk :tabclose<CR>
 
+" new file
+nmap <leader>np :!touch composer.json<CR>
+nmap <leader>ng :!touch .gitignore<CR>
+
 " Other
 nmap <Enter> o
 nmap <S-Enter> O
@@ -96,13 +99,21 @@ nmap <S-Enter> O
 " autocmd TermOpen * nnoremap <buffer> <Esc> :Bdelete!<CR>
 tnoremap <Esc> <C-\><C-n>
 map # #``
+vmap # *
 imap <C-d> <C-o><C-w>o
 
 " Code runner
-nmap <leader>rr :w<CR>:RunFile<CR>
-nmap <leader>rR :w<CR>:RunProject<CR>
-nmap <leader>rk :w<CR>:RunClose<CR>
+nmap <leader>rr :w<CR>:lua require("betterTerm").send(require("code_runner.commands").get_filetype_command(), 1, false)<CR>
+nmap <leader>rR :w<CR>:lua require("betterTerm").send(require("code_runner.commands").get_project_command().command, 1, false)<CR>
+" nmap <leader>rk :w<CR>:RunClose<CR>
 nmap <leader>rs :e ~/.config/nvim/lua/codeRunnerConf.lua<CR>
+
+" Terminal
+nnoremap <leader>1 :lua require("betterTerm").open(1)<CR>
+nnoremap <leader>2 :lua require("betterTerm").open(2)<CR>
+nnoremap <leader>3 :lua require("betterTerm").open(3)<CR>
+nnoremap <leader>4 :lua require("betterTerm").open(4)<CR>
+nmap <leader>Tt :lua require("betterTerm").select()<CR>
 
 " Nvim lsp
 nmap gr :Telescope lsp_references theme=get_ivy<CR>
