@@ -39,7 +39,10 @@ require('code_runner').setup {
     c = "cd $dir && gcc -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
     cpp = "cd $dir && g++ -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
     java = "cd $dir && javac $fileName && java $fileName",
-    haskell = "cd $dir && ghc -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt"
+    haskell = "cd $dir && ghc -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
+    php = "php $fileName",
+    rust = "cd $dir && cargo r",
+
 	},
   project_path = vim.fn.stdpath("data")
       .. "/site/pack/packer/start/code_runner.nvim/lua/code_runner/project_manager.json",
@@ -81,6 +84,11 @@ require('code_runner').setup {
       description = "FIT3155 ass 3 q2",
 			file_name = "treecode.py",
 			command = "time python -u $fileName 15"
+    }, ["~/OneDrive/Projects/Parsnip-browser"] = {
+      name = "Parsnip",
+      description = "Parsnip",
+			file_name = "",
+			command = "cargo r"
     }
 
 
