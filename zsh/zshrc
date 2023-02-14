@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-export PATH="/home/sam/.emacs.d/bin:$PATH"
+#
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/sam/.oh-my-zsh"
@@ -149,15 +149,15 @@ alias rmt="rmtrash"
 alias cat="bat --pager none"
 alias icat="kitty +kitten icat"
 
-alias UPD="S pacman -Syu"
+alias UPD="S dnf update"
 
 alias MAKEPKG="makepkg -sirc"
 
-alias INS="S pacman -S "
+alias INS="S dnf install"
 
-alias REM="S pacman -R "
+alias REM="S dnf remove"
 
-alias SEA="S pacman -Ss "
+alias SEA="dnf search"
 
 alias quit="exit"
 
@@ -191,6 +191,15 @@ alias NOTES="nvim /home/sam/Documents/notes1.txt /home/sam/Documents/notes2.txt"
 
 alias CATBAT="cat /sys/class/power_supply/BAT0/capacity"
 
+alias URLDECODE='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+alias URLENCODE='python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
+
+alias rustscan='sudo docker run -it --rm --name rustscan rustscan/rustscan:2.0.0'
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f "/home/sam/.ghcup/env" ] && source "/home/sam/.ghcup/env" # ghcup-env
+source /home/sam/.ngrok_completion
+
+# [ -f "/home/sam/.ghcup/env" ] && source "/home/sam/.ghcup/env" # ghcup-env
+#
