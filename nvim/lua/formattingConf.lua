@@ -80,7 +80,7 @@ require("formatter").setup({
 		html = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
@@ -93,7 +93,7 @@ require("formatter").setup({
 		css = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
@@ -106,7 +106,7 @@ require("formatter").setup({
 		javascript = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
@@ -119,7 +119,7 @@ require("formatter").setup({
 		typescript = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
@@ -132,7 +132,7 @@ require("formatter").setup({
 		json = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
@@ -145,7 +145,7 @@ require("formatter").setup({
 		xml = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
@@ -158,7 +158,7 @@ require("formatter").setup({
 		yaml = {
 			function()
 				return {
-					exe = "prettier",
+					exe = "npx prettier",
 					args = {
 						"--stdin-filepath",
 						vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),

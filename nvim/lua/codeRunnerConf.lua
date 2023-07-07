@@ -39,7 +39,7 @@ require('code_runner').setup {
     c = "cd $dir && gcc -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
     cpp = "cd $dir && g++ -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
     java = "cd $dir && javac $fileName && java $fileName",
-    haskell = "cd $dir && ghc -o $fileNameWithoutExt $fileName && ./$fileNameWithoutExt && rm $fileNameWithoutExt",
+    haskell = "cabal run all",
     php = "php $fileName",
     rust = "cd $dir && cargo r",
 

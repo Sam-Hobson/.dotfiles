@@ -1,9 +1,5 @@
--- Setup nvim-cmp.
-
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
+-- Set up nvim-cmp.
 local cmp = require("cmp")
-
 
 local sign = function(opts)
 	vim.fn.sign_define(opts.name, {
@@ -19,12 +15,6 @@ sign({ name = "DiagnosticSignHint", text = "⚑" })
 sign({ name = "DiagnosticSignInfo", text = "" })
 
 cmp.setup({
-	formatting = {
-		format = function(entry, vim_item)
-			vim_item.abbr = string.sub(vim_item.abbr, 1, 80)
-			return vim_item
-		end,
-	},
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
@@ -44,13 +34,12 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-		["<Tab>"] = cmp.mapping.select_next_item(select_opts),
-		["<S-Tab>"] = cmp.mapping.select_prev_item(select_opts),
+		["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item()),
+		["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item()),
 	}),
 	sources = cmp.config.sources({
 		{ name = "luasnip" }, -- For luasnip users.
 		{ name = "nvim_lsp" },
-		-- { name = 'vsnip' }, -- For vsnip users.
 		{ name = "path" },
 	}, {
 		{ name = "buffer" },
@@ -66,8 +55,8 @@ cmp.setup.filetype("gitcommit", {
 	}),
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", {
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
@@ -83,10 +72,3 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
-
--- -- Setup lspconfig.
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---   capabilities = capabilities
--- }

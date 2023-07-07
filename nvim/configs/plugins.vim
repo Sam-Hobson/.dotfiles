@@ -4,13 +4,14 @@ Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
 Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
 Plug 'L3MON4D3/LuaSnip', { 'do': 'make install_jsregexp' } " Snippets plugin
 Plug 'mfussenegger/nvim-lint'
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-lsputils'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'j-hui/fidget.nvim'
+Plug 'j-hui/fidget.nvim', { 'branch': 'legacy' }
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -23,7 +24,7 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 
 " Colour
-" Plug 'norcalli/nvim-colorizer.lua'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Git
@@ -57,6 +58,8 @@ Plug 'CRAG666/betterTerm.nvim'
 " Comfort
 Plug 'famiu/bufdelete.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'ghillb/cybu.nvim'
+Plug 'chrisgrieser/nvim-spider'
 
 " Folds
 " Plug 'anuvyklack/pretty-fold.nvim'

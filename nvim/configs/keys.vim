@@ -6,7 +6,7 @@ nnoremap <leader>, <cmd>Telescope buffers<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fr <cmd>Telescope oldfiles<CR>
 nnoremap <leader>fb <cmd>Telescope current_buffer_fuzzy_find theme=get_ivy<CR>
-nnoremap <leader>fS <cmd>Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap <leader>fS <cmd>Telescope lsp_document_symbols<CR>
 
 " incremental selection
 vmap m grn
@@ -15,6 +15,14 @@ vmap M grm
 " Go to start of line
 noremap - _
 noremap _ -
+
+" Movement
+lua <<EOF
+  vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+  vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+  vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+  vim.keymap.set({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
+EOF
 
 " Fold
 nnoremap za zA
@@ -75,8 +83,8 @@ nmap <leader>cf :FormatWrite<CR>
 nmap <leader>ot :!kitty &<CR><Enter>
 
 " Buffers
-nmap <leader>- :bp<CR>
-nmap <leader>= :bn<CR>
+nmap <leader>- :CybuPrev<CR>
+nmap <leader>= :CybuNext<CR>
 nmap <leader>bk :Bdelete!<CR>
 nmap <leader>br :write<space>\|<space>edit<space>\|<space>TSBufEnable<space>highlight<CR>
 
@@ -121,6 +129,8 @@ nmap <leader>ce :Telescope diagnostics theme=get_ivy<CR>
 
 " Snippets
 nmap <leader>cs :!kitty -e vim ~/.config/nvim/snippets &; disown<CR>
+imap <C-k> <cmd>lua require'luasnip'.jump(1)<CR>
+imap <C-j> <cmd>lua require'luasnip'.jump(-1)<CR>
 
 " Spelling (Splunker)
 nmap <leader>ss z=

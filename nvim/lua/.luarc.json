@@ -48,5 +48,6 @@
         "/home/sam/.config/nvim/plugged/cmp_luasnip/after",
         "/home/sam/.config/nvim/plugged/spelunker.vim/after",
         "${3rd}/luassert/library"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }

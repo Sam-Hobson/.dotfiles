@@ -35,6 +35,8 @@ set numberwidth=1
 set undofile
 set undodir=/home/sam/.config/nvim/undodir-nightly//
 
+set shell=/usr/bin/zsh
+
 set termguicolors
 
 " Automatically reload the buffer on save.
@@ -53,6 +55,10 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})
 augroup END
 
+" Show trailing whitespace:
+hi EoLSpace ctermbg=238 guibg=#db4b4b
+match EoLSpace /\s\+$/
+
 " Css
 autocmd FileType css setl iskeyword+=-
 
@@ -68,8 +74,11 @@ lua <<EOF
   })
   -- require'bufferline'.setup{}
   -- dofile "/home/sam/.config/nvim/lua/tabbar.lua"
-  -- require'colorizer'.setup()
-  require("which-key").setup{}
+  require'colorizer'.setup()
+  require("which-key").setup()
+  require("auto-session").setup()
+  require("spider").setup({skipInsignificantPunctuation = true})
+  dofile "/home/sam/.config/nvim/lua/bufSwitch.lua"
   dofile "/home/sam/.config/nvim/lua/fidgetConf.lua"
   dofile "/home/sam/.config/nvim/lua/betterTerminal.lua"
   --dofile "/home/sam/.config/nvim/lua/marksConf.lua"
