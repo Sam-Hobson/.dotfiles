@@ -3,6 +3,7 @@
 pushd $DOTFILES
 
 rm -rf $DOTFILES/out
+mkdir $DOTFILES/out
 
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
