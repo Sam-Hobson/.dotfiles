@@ -3,14 +3,16 @@
 pushd $DOTFILES
 
 for pair in "${STOW_FOLDERS[@]}";
+do
     folder="${pair%% *}"
     dest="${pair#* }"
+
 
     mkdir ~/$dest
 
     echo "stow $folder to $dest"
     stow -t ~/$dest $folder
-do
+done
 
 
 # for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
