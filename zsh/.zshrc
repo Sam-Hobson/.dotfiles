@@ -111,9 +111,7 @@ alias tksv="tmux kill-server"
 alias tkss="tmux kill-session -t"
 
 # if [ "$TMUX" = "" ]; then tmux new-session -A -t 0; fi
-if [ "$TMUX" = "" ]; then tmux; fi
-
-
+# if [ "$TMUX" = "" ]; then tmux; fi
 
 eval "$(starship init zsh)"
 
