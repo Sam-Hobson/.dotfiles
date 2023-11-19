@@ -75,7 +75,7 @@ CASE_SENSITIVE="false"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,4 +104,16 @@ alias cd...="cd ../../.."
 alias cd....="cd ../../../.."
 alias cd.....="cd ../../../../.."
 
+# TMUX
+alias tl="tmux ls"
+alias ta="tmux attach -t"
+alias tksv="tmux kill-server"
+alias tkss="tmux kill-session -t"
+
+# if [ "$TMUX" = "" ]; then tmux new-session -A -t 0; fi
+if [ "$TMUX" = "" ]; then tmux; fi
+
+
+
 eval "$(starship init zsh)"
+
