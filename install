@@ -9,7 +9,7 @@ do
     folder="${pair%%\\*}"
     dest="${pair##*\\}"
 
-    mkdir ~/$dest
+    mkdir ~/$dest 2> /dev/null
 
     echo "stow $folder to $dest"
     stow -t ~/$dest $folder
