@@ -1,8 +1,20 @@
 #!/usr/bin/env zsh
 
+
+if [[ -z $STOW_FOLDERS ]]; then
+  # STOW_FOLDERS="bin\\.local/bin kitty\\.config/kitty nvim\\.config/nvim tmux\\ zsh\\"
+  STOW_FOLDERS="tmux\\"
+fi
+
+if [[ -z $DOTFILES ]]; then
+    DOTFILES=$HOME/.dotfiles
+fi
+
+
 pushd $DOTFILES
 
 echo $STOW_FOLDERS
+
 
 for pair in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
