@@ -108,8 +108,9 @@ alias cd.....="cd ../../../../.."
 
 # TMUX
 alias tm="tmux"
-alias tl="tmux ls"
 alias ta="tmux attach -t"
+alias tl="tmux ls"
+alias tam="ta || tm"
 alias tksv="tmux kill-server"
 alias tkss="tmux kill-session -t"
 

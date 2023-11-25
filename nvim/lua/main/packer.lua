@@ -14,13 +14,15 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
-  })
+  -- use({
+  -- 	  'rose-pine/neovim',
+  -- 	  as = 'rose-pine',
+  -- 	  config = function()
+  -- 		  vim.cmd('colorscheme rose-pine')
+  -- 	  end
+  -- })
+
+  use { "ellisonleao/gruvbox.nvim" }
 
   use({
       "folke/trouble.nvim",
@@ -33,6 +35,11 @@ return require('packer').startup(function(use)
           }
       end
   })
+
+  use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+  }
 
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
@@ -66,8 +73,7 @@ return require('packer').startup(function(use)
 	  }
   }
 
-  -- use("folke/zen-mode.nvim")
-  use("github/copilot.vim")
+  -- use("github/copilot.vim")
   use("eandrju/cellular-automaton.nvim")
   use("laytan/cloak.nvim")
 
