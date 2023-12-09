@@ -30,6 +30,10 @@ require 'nvim-treesitter.configs'.setup {
             -- scope_incremental = "grc",
             node_decremental = "M",
         }
+    },
+
+    autotag = {
+        enable = true
     }
 
 }

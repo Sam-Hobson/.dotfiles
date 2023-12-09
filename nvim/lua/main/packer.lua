@@ -36,11 +36,6 @@ return require('packer').startup(function(use)
       end
   })
 
-  use {
-      "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
-  }
-
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
   use("nvim-treesitter/playground")
@@ -80,6 +75,13 @@ return require('packer').startup(function(use)
   use("terrortylor/nvim-comment")
   use({ "kylechui/nvim-surround", tag = "*" })
   use("nvim-tree/nvim-web-devicons")
+
+  use {
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
+  }
+
+  use("windwp/nvim-ts-autotag")
 
 end)
 
