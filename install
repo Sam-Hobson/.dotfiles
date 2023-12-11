@@ -24,6 +24,9 @@ do
     mkdir ~/$dest 2> /dev/null
 
     echo "stow $folder to $dest"
+
+    # error=$((stow -R -t ~/$dest $folder) 2>&1 >/dev/null)
+
     stow -t ~/$dest $folder
 done
 
