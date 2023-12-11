@@ -40,3 +40,4 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<leader>qq", "<cmd>lua require('main.packer')<CR>");
 
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>")

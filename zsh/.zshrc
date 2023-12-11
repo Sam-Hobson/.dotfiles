@@ -117,3 +117,6 @@ alias tkss="tmux kill-session -t"
 
 eval "$(starship init zsh)"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
