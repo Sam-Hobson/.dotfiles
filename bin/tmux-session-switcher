@@ -2,8 +2,13 @@
 
 if [[ -z $TMUX ]]; then
     selected_name=$(tmux ls | fzf | cut -f1 -d":")
+
+    if [[ -z $selected_name ]]; then
+        exit 0
+    fi
+
     tmux attach -t $selected_name 2> /dev/null || tmux switch-client -t $selected_name
     exit 0
 fi
 
-    tmux choose-tree -s
+tmux choose-tree -s
