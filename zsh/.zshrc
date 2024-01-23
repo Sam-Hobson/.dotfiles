@@ -98,6 +98,7 @@ alias ll="exa -la"
 
 # This may need to be disabled in some cases
 alias cat="bat --pager none"
+# alias bat="batcat"
 alias icat="kitty +kitten icat --background=white"
 
 alias cd.="cd .."
