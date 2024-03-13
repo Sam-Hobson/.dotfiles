@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>cE", "<cmd>TroubleToggle document_diagnostics<cr>",
     { silent = true, noremap = true }
 )
 
-vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>",
+vim.keymap.set("n", "gh", "<cmd>TroubleToggle lsp_references<cr>",
     { silent = true, noremap = true }
 )
 
