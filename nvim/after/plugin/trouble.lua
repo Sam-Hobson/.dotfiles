@@ -21,3 +21,4 @@ vim.keymap.set("n", "gd", "<cmd>TroubleToggle lsp_definitions<cr>",
 vim.keymap.set("n", "gi", "<cmd>TroubleToggle lsp_implementations<cr>",
     { silent = true, noremap = true }
 )
+

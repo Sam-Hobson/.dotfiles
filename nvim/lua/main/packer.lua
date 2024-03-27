@@ -27,12 +27,7 @@ return require('packer').startup(function(use)
   use({
       "folke/trouble.nvim",
       config = function()
-          require("trouble").setup {
-              icons = false,
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-          }
+          require("trouble").setup { icons = false, }
       end
   })
 
@@ -71,7 +66,6 @@ return require('packer').startup(function(use)
 
   -- use("github/copilot.vim")
   use("eandrju/cellular-automaton.nvim")
-  use("laytan/cloak.nvim")
 
   use("terrortylor/nvim-comment")
   use({ "kylechui/nvim-surround", tag = "*" })
