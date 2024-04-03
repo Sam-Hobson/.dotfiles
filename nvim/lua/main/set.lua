@@ -30,3 +30,7 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "90"
 
 vim.opt.mousescroll="ver:1,hor:0"
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd([[ set nofoldenable ]])
