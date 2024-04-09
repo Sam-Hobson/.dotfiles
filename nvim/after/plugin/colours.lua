@@ -1,10 +1,5 @@
-
 function ColorMyPencils( colourOrTheme )
 	vim.cmd.colorscheme(colourOrTheme)
-
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
 end
 
 
@@ -26,6 +21,13 @@ function GruvboxColour()
     })
 
     ColorMyPencils("gruvbox")
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "Visual", { bg = "#2b2b2b" })
+	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1b1b1b" })
+	vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#1b1b1b" })
+	vim.api.nvim_set_hl(0, "StatusLine", { bg = "#2b2b2b" })
 
 end
 

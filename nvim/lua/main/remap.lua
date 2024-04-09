@@ -38,3 +38,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<leader>qq", "<cmd>lua require('main.packer')<CR>");
+
+vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<CR>");
+vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>");

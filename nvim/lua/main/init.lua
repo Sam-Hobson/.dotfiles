@@ -24,6 +24,9 @@ autocmd('TextYankPost', {
     end,
 })
 
+-- Highlight trailing whitespace
+vim.fn.matchadd('errorMsg', '\\s\\+$')
+
 
 -- Delete trailing whitespace
 autocmd({"BufWritePre"}, {
