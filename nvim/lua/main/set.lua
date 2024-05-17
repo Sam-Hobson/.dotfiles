@@ -16,6 +16,9 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+vim.opt.fileformats = { "unix", "dos" }
+
+vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P [%{&fileformat}]"
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
