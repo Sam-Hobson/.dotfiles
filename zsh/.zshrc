@@ -55,7 +55,7 @@ WORDCHARS=""
 function tmuxSessionizer { tmux-sessionizer }
 
 function fdSearch {
-    dir=$(fd . ./ -u -td --exclude ".git" --exclude "node_modules" | fzf)
+    dir=$(fd . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
     [ -n "$dir" ] && cd $dir
 }
 
