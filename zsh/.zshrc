@@ -48,17 +48,28 @@ setopt hist_find_no_dups
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-bindkey '^[[Z' reverse-menu-complete
-bindkey '^[^?' backward-kill-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 WORDCHARS=""
 
 
 # Key bindings
-bindkey -s '^f' 'tmux-sessionizer\n'
+function tmuxSessionizer { tmux-sessionizer }
+
+function fdSearch {
+    dir=$(fd . ./ -u -td --exclude ".git" --exclude "node_modules" | fzf)
+    [ -n "$dir" ] && cd $dir
+}
+
+zle -N tmuxSessionizer
+zle -N fdSearch
+
+bindkey '^f' tmuxSessionizer
+bindkey '^a' fdSearch
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^[[Z' reverse-menu-complete
+bindkey '^[^?' backward-kill-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 
 # Aliases
