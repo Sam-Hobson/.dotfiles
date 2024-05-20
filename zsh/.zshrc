@@ -23,7 +23,6 @@ zinit light zsh-users/zsh-autosuggestions
 
 # Zsh snippets
 zinit snippet OMZP::command-not-found
-zinit snippet OMZP::git
 
 
 # Load zsh-completions
@@ -92,6 +91,46 @@ alias tam="ta || tm"
 alias tksv="tmux kill-server"
 alias tkss="tmux kill-session -t"
 
+# Git
+alias g="git"
+alias gst="git status"
+alias ga="git add"
+alias gaa="git add --all"
+alias gb="git branch"
+alias gba="git branch --all"
+alias gbd="git branch --delete"
+alias gbD="git branch --delete --force"
+alias gco="git checkout"
+alias gcor="git checkout --recurse-submodules"
+alias gcb="git checkout -b"
+alias gcl="git clone --recurse-submodules"
+alias gc="git commit --verbose"
+alias gca="git commit --verbose --all"
+alias gc!="git commit --verbose --amend"
+alias gca!="git commit --verbose -all --amend"
+alias gd="git diff"
+alias gf="git fetch"
+alias gfa="git fetch --all"
+alias glg="git log --stat"
+alias gl="git pull"
+alias gp="git push"
+alias gpf!="git push --force"
+alias grb="git rebase"
+alias grbc="git rebase --continue"
+alias grba="git rebase --abort"
+alias grb="git rebase $(git_main_branch)"
+alias grf="git reflog"
+alias grh="git reset"
+alias grhh="git reset --hard"
+alias grhs="git reset --soft"
+alias grs="git restore"
+alias grst="git restore --staged"
+alias gsta="git stash"
+alias gstall="git stash --all"
+alias gstl="git stash list"
+alias gstp="git stash pop"
+alias gsi="git submodule init"
+alias gsu="git submodule update"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
