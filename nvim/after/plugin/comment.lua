@@ -27,3 +27,9 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufFilePost"}, {
     end,
 })
 
+vim.api.nvim_create_autocmd({"BufEnter", "BufFilePost"}, {
+    pattern = {"*.vue"},
+    callback = function()
+        vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+    end,
+})
