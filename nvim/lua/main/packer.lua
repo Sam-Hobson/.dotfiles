@@ -16,12 +16,7 @@ return require('packer').startup(function(use)
 
   use { "ellisonleao/gruvbox.nvim" }
 
-  use({
-      "folke/trouble.nvim",
-      config = function()
-          require("trouble").setup { icons = false, }
-      end
-  })
+  use("folke/trouble.nvim")
 
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})

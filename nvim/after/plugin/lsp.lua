@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = { buffer = event.buf }
 
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>cs", function() vim.lsp.buf.workspace_symbol() end, opts)
+        -- vim.keymap.set("n", "<leader>cs", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "<leader>K", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "<leader>cc", function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)

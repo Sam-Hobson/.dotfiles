@@ -1,5 +1,6 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/share/npm/bin:$PATH
 
 export EDITOR='nvim'
 
@@ -112,7 +113,7 @@ alias gfa="git fetch --all"
 alias glg="git log --stat"
 alias gl="git pull"
 alias gp="git push"
-alias gpf!="git push --force"
+alias gpf="git push --force"
 alias grb="git rebase"
 alias grbc="git rebase --continue"
 alias grba="git rebase --abort"
