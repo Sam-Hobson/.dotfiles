@@ -3,8 +3,7 @@
 
 if [[ -z $STOW_FOLDERS ]]; then
   # STOW_FOLDERS="bin\\.local/bin kitty\\.config/kitty nvim\\.config/nvim tmux\\ zsh\\"
-  # STOW_FOLDERS="bin\\.local/bin kitty\\.config/kitty nvim\\.config/nvim tmux\\ zsh\\ npm\\"
-  STOW_FOLDERS="npm\\"
+  STOW_FOLDERS="bin\\.local/bin kitty\\.config/kitty nvim\\.config/nvim i3\\.config/i3 tmux\\ zsh\\ npm\\"
 fi
 
 if [[ -z $DOTFILES ]]; then
