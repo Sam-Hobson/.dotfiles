@@ -73,8 +73,8 @@ bindkey "^[[1;5D" backward-word
 
 
 # Aliases
-alias l="exa -l"
-alias ll="exa -la"
+alias l="eza -l"
+alias ll="eza -la"
 
 alias icat="kitty +kitten icat --background=white"
 
