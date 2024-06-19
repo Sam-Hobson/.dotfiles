@@ -240,7 +240,7 @@ exec_always --no-startup-id picom -bc
 
 
 exec_always "setxkbmap -option caps:swapescape"
-exec --no-startup-id feh --bg-scale /usr/share/wallpapers/custom/one-piece.png
+exec --no-startup-id feh --bg-scale /usr/share/wallpapers/Next/contents/images/1920x1080.png
 
 
 for_window [class="yakuake"] floating enable;
