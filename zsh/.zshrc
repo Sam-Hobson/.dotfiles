@@ -52,7 +52,11 @@ WORDCHARS=""
 
 
 # Key bindings
-function tmuxSessionizer { tmux-sessionizer }
+function tmuxSessionizer {
+    exec </dev/tty  # This is to fix an issue with zle binds nulling stdin/out.
+    exec <&1
+    tmux-sessionizer
+}
 
 function fdSearch {
     dir=$(fd . ./ -td --exclude ".git" --exclude "node_modules" | fzf)

@@ -77,3 +77,9 @@ Robotframework
 Shutoff
 hide
 set
+rofi
+tmux
+dir
+nulling
+zle
+stdin

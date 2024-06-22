@@ -41,3 +41,5 @@ vim.keymap.set("n", "<leader>qq", "<cmd>lua require('main.packer')<CR>");
 
 vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<CR>");
 vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>");
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

@@ -14,13 +14,16 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+# If tmux is not running at all
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
     exit 0
 fi
 
+# If tmux is running, but doesn't have an active session for the dir
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
 fi
 
+# Attach or switch to session
 tmux attach -t $selected_name 2> /dev/null || tmux switch-client -t $selected_name
