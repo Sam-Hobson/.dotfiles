@@ -1,5 +1,13 @@
 vim.g.mapleader = " "
 
+-- Generate a random hash at the cursor, this is useful for logging functions.
+function RandomHash()
+    local random_string = vim.fn.systemlist('openssl rand -hex 4')[1]
+    vim.api.nvim_put({random_string}, 'c', true, true)
+end
+vim.keymap.set("i", "<C-h>", "<cmd>lua RandomHash()<CR>")
+vim.keymap.set("n", "<C-h>", "<cmd>lua RandomHash()<CR>")
+
 
 -- Open the explorer
 vim.keymap.set("n", "<leader><space>", vim.cmd.Ex)
