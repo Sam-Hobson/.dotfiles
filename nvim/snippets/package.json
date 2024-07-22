@@ -1,0 +1,12 @@
+{
+    "name": "friendly-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "go",
+                "path": "./snippets/go.json"
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,12 @@
+{
+    "nil check": {
+        "prefix": "ifnil",
+        "body": "if $1 == nil {\n\t$2\n}",
+        "description": "Snippet for nil check"
+    },
+    "init function": {
+        "prefix": "init",
+        "body": "func init() {\n\t$1\n}",
+        "description": "Snippet for init function"
+    }
+}

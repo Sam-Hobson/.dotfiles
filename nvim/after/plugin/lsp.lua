@@ -93,7 +93,11 @@ local cmp = require('cmp')
 local cmp_action = lsp.cmp_action()
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-require('luasnip.loaders.from_vscode').lazy_load()
+
+local custom_snippets = { "go" }
+
+require('luasnip.loaders.from_vscode').lazy_load({ exclude = custom_snippets })
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
 
 cmp.setup({
     sources = {
