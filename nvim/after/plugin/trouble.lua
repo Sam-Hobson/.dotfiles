@@ -20,6 +20,10 @@ vim.keymap.set("n", "gh", "<cmd>Trouble lsp toggle focus=true<cr>",
     { silent = true, noremap = true }
 )
 
+vim.keymap.set("n", "gH", "<cmd>Trouble lsp_references toggle focus=true<cr>",
+    { silent = true, noremap = true }
+)
+
 vim.keymap.set("n", "gd", "<cmd>Trouble lsp_definitions toggle focus=true<cr>",
     { silent = true, noremap = true }
 )
