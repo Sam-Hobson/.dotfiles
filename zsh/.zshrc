@@ -1,8 +1,11 @@
+export PATH=$HOME/.local/share/npm/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/share/npm/bin:$PATH
+export PATH=$HOME/.pyenv/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 
 export EDITOR='nvim'
+export PUMP_IP=$(head ~/Makefile | sed -n 's/^YOUR_PUMP_IP ?= \([0-9.]\+\)/\1/p')
 
 # Init zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -55,7 +58,7 @@ WORDCHARS=""
 function tmuxSessionizer { tmux-sessionizer }
 
 function fdSearch {
-    dir=$(fd . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
+    dir=$(fdfind . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
     [ -n "$dir" ] && cd $dir
 }
 
@@ -130,6 +133,21 @@ alias gstp="git stash pop"
 alias gsi="git submodule init"
 alias gsu="git submodule update"
 
+function explorer() {
+    pushd $(dirname $(realpath $argv));
+    explorer.exe . &;
+    popd;
+}
+
+function serial() {
+    printf "$argv\r" | plink.exe -load "Serial coms"
+}
+
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export DISPLAY=:0
