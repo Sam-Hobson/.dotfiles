@@ -1,0 +1,12 @@
+{
+    "tags": {
+        "prefix": "tags",
+        "body": "[Tags]    ",
+        "description": "Snippet for tags"
+    },
+    "teardown": {
+        "prefix": "teardown",
+        "body": "[Teardown]    ",
+        "description": "Snippet for teardown"
+    }
+}
