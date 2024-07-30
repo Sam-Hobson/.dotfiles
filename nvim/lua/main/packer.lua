@@ -58,11 +58,12 @@ return require('packer').startup(function(use)
   use({ "kylechui/nvim-surround", tag = "*" })
   use("nvim-tree/nvim-web-devicons")
 
-  use {
-      "windwp/nvim-autopairs",
-      event = "InsertEnter",
-      config = function() require("nvim-autopairs").setup {} end
-  }
+  use("echasnovski/mini.pairs")
+  -- use {
+  --     "windwp/nvim-autopairs",
+  --     event = "InsertEnter",
+  --     config = function() require("nvim-autopairs").setup {} end
+  -- }
 
   use("windwp/nvim-ts-autotag")
 

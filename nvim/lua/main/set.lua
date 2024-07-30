@@ -10,6 +10,8 @@ vim.opt.smartindent = true
 
 vim.opt.cursorline = true
 
+vim.opt.cmdheight = 0
+
 vim.opt.wrap = false
 
 vim.opt.swapfile = false

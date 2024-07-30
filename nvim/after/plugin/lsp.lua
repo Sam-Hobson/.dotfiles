@@ -89,16 +89,26 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
+
 local cmp_action = lsp.cmp_action()
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-require('luasnip.loaders.from_vscode').lazy_load()
+
+local custom_snippets_filetypes = { "go" }
+
+require('luasnip.loaders.from_vscode').lazy_load({ exclude = custom_snippets_filetypes })
+require("luasnip.loaders.from_vscode").lazy_load({ include = custom_snippets_filetypes, paths = { "./snippets/" } })
+
 
 cmp.setup({
+    completion = {
+        completeopt = 'menu,menuone,noinsert'
+    },
+    preselect = cmp.PreselectMode.None,
     sources = {
         { name = 'path' },
-        { name = 'nvim_lsp' },
         { name = 'luasnip', keyword_length = 2 },
+        { name = 'nvim_lsp' },
         { name = 'buffer',  keyword_length = 3 },
     },
     mapping = cmp.mapping.preset.insert({

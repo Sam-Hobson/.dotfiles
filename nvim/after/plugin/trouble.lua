@@ -12,11 +12,15 @@ vim.keymap.set("n", "<leader>cE", "<cmd>Trouble diagnostics toggle filter.buf=0<
     { silent = true, noremap = true }
 )
 
-vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=true<cr>",
+vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=true win.position=bottom<cr>",
     { silent = true, noremap = true }
 )
 
 vim.keymap.set("n", "gh", "<cmd>Trouble lsp toggle focus=true<cr>",
+    { silent = true, noremap = true }
+)
+
+vim.keymap.set("n", "gH", "<cmd>Trouble lsp_references toggle focus=true<cr>",
     { silent = true, noremap = true }
 )
 
