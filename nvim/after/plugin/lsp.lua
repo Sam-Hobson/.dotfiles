@@ -125,6 +125,9 @@ cmp.setup({
             ls.lsp_expand(args.body)
         end,
     },
+    experimental = {
+        ghost_text = true,
+    },
 })
 
 vim.diagnostic.config({ virtual_text = true })
