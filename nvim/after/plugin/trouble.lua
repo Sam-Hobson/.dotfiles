@@ -16,15 +16,15 @@ vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=true win.po
     { silent = true, noremap = true }
 )
 
-vim.keymap.set("n", "gh", "<cmd>Trouble lsp toggle focus=true<cr>",
+vim.keymap.set("n", "gh", "<cmd>Trouble lsp toggle focus=true auto_refresh=false<cr>",
     { silent = true, noremap = true }
 )
 
-vim.keymap.set("n", "gH", "<cmd>Trouble lsp_references toggle focus=true<cr>",
+vim.keymap.set("n", "gH", "<cmd>Trouble lsp_references toggle focus=true auto_refresh=false<cr>",
     { silent = true, noremap = true }
 )
 
-vim.keymap.set("n", "gd", "<cmd>Trouble lsp_definitions toggle focus=true<cr>",
+vim.keymap.set("n", "gd", "<cmd>Trouble lsp_definitions toggle focus=true auto_refresh=false<cr>",
     { silent = true, noremap = true }
 )
 
