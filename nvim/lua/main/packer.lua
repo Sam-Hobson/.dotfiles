@@ -51,9 +51,6 @@ return require('packer').startup(function(use)
 	  }
   }
 
-  -- use("github/copilot.vim")
-  use("eandrju/cellular-automaton.nvim")
-
   use("terrortylor/nvim-comment")
   use({ "kylechui/nvim-surround", tag = "*" })
   use("nvim-tree/nvim-web-devicons")
@@ -66,6 +63,7 @@ return require('packer').startup(function(use)
   -- }
 
   use("windwp/nvim-ts-autotag")
+  use("nguyenvukhang/nvim-toggler")
 
 end)
 
