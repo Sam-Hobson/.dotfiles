@@ -28,6 +28,6 @@ vim.keymap.set("n", "gd", "<cmd>Trouble lsp_definitions toggle focus=true auto_r
     { silent = true, noremap = true }
 )
 
--- vim.keymap.set("n", "gi", "<cmd>TroubleToggle lsp_implementations<cr>",
---     { silent = true, noremap = true }
--- )
+vim.keymap.set("n", "gI", "<cmd>Trouble lsp_implementations toggle focus=true auto_refresh=false<cr>",
+    { silent = true, noremap = true }
+)
