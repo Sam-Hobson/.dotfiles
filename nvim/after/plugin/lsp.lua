@@ -38,24 +38,54 @@ require('mason-lspconfig').setup({
 			lspconfig[server_name].setup({ capabilities = lsp_capabilities, })
 		end,
 
-		lua_ls = function()
-			require('lspconfig').lua_ls.setup({
-				capabilities = lsp_capabilities,
-				settings = {
-					Lua = {
-						runtime = { version = 'LuaJIT' },
-						diagnostics = { globals = { 'vim' }, },
-						workspace = {
-							library = {
-								vim.env.VIMRUNTIME,
-							}
-						}
-					}
-				}
-			})
-		end,
+        -- All this is to get vue-language-server to work
+        ts_ls = function()
+            local vue_typescript_plugin = require('mason-registry')
+                .get_package('vue-language-server')
+                :get_install_path()
+                .. '/node_modules/@vue/language-server'
+                .. '/node_modules/@vue/typescript-plugin'
 
-	}
+            lspconfig.ts_ls.setup({
+                init_options = {
+                    plugins = {
+                        {
+                            name = "@vue/typescript-plugin",
+                            location = vue_typescript_plugin,
+                            languages = { 'javascript', 'typescript', 'vue' }
+                        },
+                    }
+                },
+                filetypes = {
+                    'javascript',
+                    'javascriptreact',
+                    'javascript.jsx',
+                    'typescript',
+                    'typescriptreact',
+                    'typescript.tsx',
+                    'vue',
+                },
+            })
+        end,
+
+        lua_ls = function()
+            require('lspconfig').lua_ls.setup({
+                capabilities = lsp_capabilities,
+                settings = {
+                    Lua = {
+                        runtime = { version = 'LuaJIT' },
+                        diagnostics = { globals = { 'vim' }, },
+                        workspace = {
+                            library = {
+                                vim.env.VIMRUNTIME,
+                            }
+                        }
+                    }
+                }
+            })
+        end,
+
+    }
 })
 
 local cmp = require('cmp')
