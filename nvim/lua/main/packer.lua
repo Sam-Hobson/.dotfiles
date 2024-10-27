@@ -55,15 +55,9 @@ return require('packer').startup(function(use)
   use({ "kylechui/nvim-surround", tag = "*" })
   use("nvim-tree/nvim-web-devicons")
 
-  use("echasnovski/mini.pairs")
-  -- use {
-  --     "windwp/nvim-autopairs",
-  --     event = "InsertEnter",
-  --     config = function() require("nvim-autopairs").setup {} end
-  -- }
-
   use("windwp/nvim-ts-autotag")
   use("nguyenvukhang/nvim-toggler")
 
+  use("sam-hobson/extended_attributes.nvim")
 end)
 
