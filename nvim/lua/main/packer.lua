@@ -20,13 +20,14 @@ return require('packer').startup(function(use)
 
 
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
-  use("nvim-treesitter/playground")
+  -- use("nvim-treesitter/playground")
   use("theprimeagen/harpoon")
-  use("theprimeagen/refactoring.nvim")
+  -- use("theprimeagen/refactoring.nvim")
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
   use("sindrets/diffview.nvim")
   use("nvim-treesitter/nvim-treesitter-context");
+  -- use("windwp/nvim-ts-autotag")
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
@@ -55,9 +56,10 @@ return require('packer').startup(function(use)
   use({ "kylechui/nvim-surround", tag = "*" })
   use("nvim-tree/nvim-web-devicons")
 
-  use("windwp/nvim-ts-autotag")
   use("nguyenvukhang/nvim-toggler")
+  use("dhruvasagar/vim-table-mode")
 
   use("sam-hobson/extended_attributes.nvim")
+
 end)
 
