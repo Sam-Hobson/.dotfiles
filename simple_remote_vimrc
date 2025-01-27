@@ -1,0 +1,11 @@
+set relativenumber
+set number
+set ttimeoutlen=0
+
+" Converts tabs into spaces
+set expandtab
+" Sets the width of a tab character to 4 spaces
+set tabstop=2
+" Sets the width for auto-indent (like when you press >> or use the = operator)
+set shiftwidth=2
+
