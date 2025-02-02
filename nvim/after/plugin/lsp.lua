@@ -94,10 +94,11 @@ local cmp_action = lsp.cmp_action()
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 
-local custom_snippets_filetypes = { "go", "robot" }
+local custom_snippets_filetypes = { "go", "robot", "make" }
+local snippet_path = vim.fn.stdpath("config") .. "/snippets/"
 
 require('luasnip.loaders.from_vscode').lazy_load({ exclude = custom_snippets_filetypes })
-require("luasnip.loaders.from_vscode").lazy_load({ include = custom_snippets_filetypes, paths = { "./snippets/" } })
+require("luasnip.loaders.from_vscode").lazy_load({ include = custom_snippets_filetypes, paths = { snippet_path } })
 
 
 cmp.setup({

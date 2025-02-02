@@ -87,66 +87,6 @@ alias cd...="cd ../../.."
 alias cd....="cd ../../../.."
 alias cd.....="cd ../../../../.."
 
-# TMUX
-alias tm="tmux"
-alias ta="tmux attach -t"
-alias tl="tmux ls"
-alias tam="ta || tm"
-alias tksv="tmux kill-server"
-alias tkss="tmux kill-session -t"
-
-# Git
-alias g="git"
-alias gst="git status"
-alias ga="git add"
-alias gaa="git add --all"
-alias gb="git branch"
-alias gba="git branch --all"
-alias gbd="git branch --delete"
-alias gbD="git branch --delete --force"
-alias gco="git checkout"
-alias gcor="git checkout --recurse-submodules"
-alias gcob="git checkout -b"
-alias gcl="git clone --recurse-submodules"
-alias gc="git commit --verbose"
-alias gca="git commit --verbose --amend"
-alias gcp="git cherry-pick"
-alias gcpc="git cherry-pick --continue"
-alias gcpa="git cherry-pick --abort"
-alias gd="git diff"
-alias gf="git fetch"
-alias gfa="git fetch --all"
-alias gfap="git fetch --all --prune"
-alias glg="git log --stat"
-alias gl="git pull"
-alias gp="git push"
-alias gpf="git push --force"
-alias grb="git rebase"
-alias grbc="git rebase --continue"
-alias grba="git rebase --abort"
-alias grf="git reflog"
-alias grh="git reset"
-alias grhh="git reset --hard"
-alias grhs="git reset --soft"
-alias grs="git restore"
-alias grst="git restore --staged"
-alias gsta="git stash"
-alias gstall="git stash --all"
-alias gstl="git stash list"
-alias gstp="git stash pop"
-alias gsi="git submodule init"
-alias gsu="git submodule update"
-
-function explorer() {
-    pushd $(dirname $(realpath $argv));
-    explorer.exe . &;
-    popd;
-}
-
-function serial() {
-    printf "$argv\r" | plink.exe -load "Serial coms"
-}
-
 eval "$(pyenv init -)"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
