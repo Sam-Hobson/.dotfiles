@@ -1,0 +1,17 @@
+{
+	"DEFAULT_GOAL": {
+		"prefix": "default",
+		"body": ".DEFAULT_GOAL = $1",
+		"description": "Set the default make target"
+	},
+	"help": {
+		"prefix": "help",
+		"body": [
+			"MAKEFILE_PATH := $(realpath $(lastword $(MAKEFILE_LIST)))",
+			"help:  # Get help",
+			"\t@echo \"Use: make [TARGET]\"",
+			"\t@sed -n \"s/^\\([a-zA-Z]*\\):  # \\(.*\\)$$/\\t\\1\\t\\t\\2/p\" $(MAKEFILE_PATH)"
+		],
+		"description": "Generate help text for Makefile"
+	}
+}

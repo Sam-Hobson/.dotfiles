@@ -9,6 +9,10 @@
             {
                 "language": "robot",
                 "path": "./snippets/robot.json"
+            },
+            {
+                "language": "make",
+                "path": "./snippets/makefile.json"
             }
         ]
     }

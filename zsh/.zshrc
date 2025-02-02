@@ -88,14 +88,6 @@ alias cd...="cd ../../.."
 alias cd....="cd ../../../.."
 alias cd.....="cd ../../../../.."
 
-# TMUX
-alias tm="tmux"
-alias ta="tmux attach -t"
-alias tl="tmux ls"
-alias tam="ta || tm"
-alias tksv="tmux kill-server"
-alias tkss="tmux kill-session -t"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
