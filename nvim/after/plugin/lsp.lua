@@ -100,7 +100,6 @@ local snippet_path = vim.fn.stdpath("config") .. "/snippets/"
 require('luasnip.loaders.from_vscode').lazy_load({ exclude = custom_snippets_filetypes })
 require("luasnip.loaders.from_vscode").lazy_load({ include = custom_snippets_filetypes, paths = { snippet_path } })
 
-
 cmp.setup({
 	completion = {
 		completeopt = 'menu,menuone,noinsert'
