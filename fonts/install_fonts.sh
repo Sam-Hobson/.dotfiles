@@ -1,9 +1,14 @@
 #!/bin/bash
 
+if [[ $# == 0 ]]; then
+	echo "Usage: install_fonts.sh [INPUT FILE]"
+	exit 1
+fi
+
 path=$(realpath $1)
 
 if [[ ! -d $path ]]; then
-	echo "Could not find path" $path
+	echo "Could not find path" $1
 	exit 1
 fi
 
