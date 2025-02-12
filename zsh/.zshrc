@@ -2,6 +2,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/share/npm/bin:$PATH
 
+export PATH=$PATH:/usr/local/go/bin
+
 export EDITOR='nvim'
 
 # Init zinit
@@ -59,7 +61,7 @@ function tmuxSessionizer {
 }
 
 function fdSearch {
-    dir=$(fd . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
+    dir=$(fdfind . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
     [ -n "$dir" ] && cd $dir
 }
 
@@ -77,8 +79,8 @@ bindkey "^[[1;5D" backward-word
 
 
 # Aliases
-alias l="eza -l"
-alias ll="eza -la"
+alias l="exa -l"
+alias ll="exa -la"
 
 alias icat="kitty +kitten icat --background=white"
 

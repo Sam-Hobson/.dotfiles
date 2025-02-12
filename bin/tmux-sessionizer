@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . ~/ -u --min-depth=1 -td | fzf)
+    selected=$(fdfind . ~/ -u --min-depth=1 -td | fzf)
     # selected=$(find ~/ -mindepth 1 -type d | fzf)
 fi
 

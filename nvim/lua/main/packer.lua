@@ -59,6 +59,10 @@ return require('packer').startup(function(use)
 		"iamcco/markdown-preview.nvim",
 		run = function() vim.fn["mkdp#util#install"]() end,
 	})
+	use({
+		"michaelb/sniprun",
+		run = 'sh ./install.sh',
+	})
 
 	use("sam-hobson/extended_attributes.nvim")
 end)
