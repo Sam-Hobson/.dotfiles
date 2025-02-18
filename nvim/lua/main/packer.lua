@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("theprimeagen/harpoon")
 	use("mbbill/undotree")
-	use("tpope/vim-fugitive")
+	use("lewis6991/gitsigns.nvim")
 	use("sindrets/diffview.nvim")
 	use("nvim-treesitter/nvim-treesitter-context");
 
@@ -64,5 +64,5 @@ return require('packer').startup(function(use)
 		run = 'sh ./install.sh',
 	})
 
-	use("sam-hobson/extended_attributes.nvim")
+	-- use("sam-hobson/extended_attributes.nvim")
 end)
