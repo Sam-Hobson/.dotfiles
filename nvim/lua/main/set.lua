@@ -22,7 +22,16 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.fileformats = { "unix", "dos" }
 
-vim.opt.statusline = "%<%f %h%m%r%=[ %{nvim_treesitter#statusline(150)} ] [ %(%l,%c%V%) ] [ %P ] [ %{&fileformat} ]"
+vim.opt.statusline = "%<%f %h%m%r%=[ %{v:lua.custom_treesitter_statusline()} ] [ %(%l,%c%V%) ] [ %P ] [ %{&fileformat} ]"
+
+function custom_treesitter_statusline()
+  local filepath = vim.fn.expand('%:p')
+  local max_length = 150
+  local available_space = vim.fn.winwidth(0) - #filepath - 15
+
+  local treesitter_status = vim.fn['nvim_treesitter#statusline'](available_space)
+  return treesitter_status
+end
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
