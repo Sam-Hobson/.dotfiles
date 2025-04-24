@@ -9,7 +9,7 @@ end
 vim.keymap.set("n", "<C-h>", "<cmd>lua RandomHash()<CR>")
 
 -- Open the explorer
-vim.keymap.set("n", "<leader><space>", vim.cmd.Ex)
+vim.keymap.set("n", "<leader><space>", vim.cmd.Oil)
 
 -- Drag lines around
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
