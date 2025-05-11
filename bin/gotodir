@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if command -v fd >/dev/null 2>&1; then
+	dir=$(fd . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
+elif command -v fdfind >/dev/null 2>&1; then
+	dir=$(fdfind . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
+else
+	dir=$(find . -type d \( -name .git -o -name node_modules \) -prune -false -o -print | fzf)
+fi
+
+if [ -n "$dir" ]; then 
+	cd $dir
+else
+	echo "Error: dir not defined"
+fi
