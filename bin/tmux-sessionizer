@@ -3,8 +3,13 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fdfind . ~/ -u --min-depth=1 -td | fzf)
-    # selected=$(find ~/ -mindepth 1 -type d | fzf)
+    if command -v fd >/dev/null 2>&1; then
+        selected=$(fd . ~/ -u --min-depth=1 -td | fzf)
+    elif command -v fdfind >/dev/null 2>&1; then
+        selected=$(fdfind . ~/ -u --min-depth=1 -td | fzf)
+    else
+        selected=$(find ~/ -mindepth 1 -type d | fzf)
+    fi
 fi
 
 if [[ -z $selected ]]; then
