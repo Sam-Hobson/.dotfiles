@@ -1,7 +1,7 @@
 return {
-	'lewis6991/gitsigns.nvim',
+	"lewis6991/gitsigns.nvim",
 	name = gitsigns,
 	config = function()
-		require('gitsigns').setup()
-	end
+		require("gitsigns").setup()
+	end,
 }

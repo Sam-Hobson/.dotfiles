@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 -- Generate a random hash at the cursor, this is useful for logging functions.
 --
 function RandomHash()
-    local random_string = vim.fn.systemlist('openssl rand -hex 4')[1]
-    vim.api.nvim_put({ random_string }, 'c', true, true)
+	local random_string = vim.fn.systemlist("openssl rand -hex 4")[1]
+	vim.api.nvim_put({ random_string }, "c", true, true)
 end
 -- vim.keymap.set("n", "<C-h>", "<cmd>lua RandomHash()<CR>")
 
@@ -42,8 +42,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>o", "<cmd>!chown $USER %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<CR>");
-vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>");
+vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<CR>")
+vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>")
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-

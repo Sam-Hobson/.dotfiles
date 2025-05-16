@@ -37,7 +37,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
-vim.opt.mousescroll="ver:1,hor:0"
+vim.opt.mousescroll = "ver:1,hor:0"
 
 -- Folding
 vim.opt.foldmethod = "expr"
@@ -45,7 +45,6 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.cmd([[ set nofoldenable ]])
 
 -- Spelling
-vim.opt.spelllang = 'en_au'
+vim.opt.spelllang = "en_au"
 vim.opt.spell = true
 vim.opt.spelloptions = "camel"
-
