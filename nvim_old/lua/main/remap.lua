@@ -6,7 +6,7 @@ function RandomHash()
     local random_string = vim.fn.systemlist('openssl rand -hex 4')[1]
     vim.api.nvim_put({ random_string }, 'c', true, true)
 end
--- vim.keymap.set("n", "<C-h>", "<cmd>lua RandomHash()<CR>")
+vim.keymap.set("n", "<C-h>", "<cmd>lua RandomHash()<CR>")
 
 -- Open the explorer
 vim.keymap.set("n", "<leader><space>", vim.cmd.Oil)
@@ -31,6 +31,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format)
 
 -- Quickfix stuff
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")

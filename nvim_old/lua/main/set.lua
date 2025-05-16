@@ -48,4 +48,3 @@ vim.cmd([[ set nofoldenable ]])
 vim.opt.spelllang = 'en_au'
 vim.opt.spell = true
 vim.opt.spelloptions = "camel"
-
