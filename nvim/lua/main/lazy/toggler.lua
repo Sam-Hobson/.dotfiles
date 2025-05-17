@@ -1,5 +1,6 @@
 return {
 	"nguyenvukhang/nvim-toggler",
+	event = "VeryLazy",
 	config = function()
 		require("nvim-toggler").setup({
 			-- your own inverses
