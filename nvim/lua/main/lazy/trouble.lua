@@ -6,6 +6,7 @@ return {
 				icons = false,
 			})
 
+			-- TODO - Set up trouble
 			vim.keymap.set("n", "<leader>tt", function()
 				require("trouble").toggle()
 			end)
