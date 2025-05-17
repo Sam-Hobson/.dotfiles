@@ -1,7 +1,3 @@
--- function ColorMyPencils(color)
--- 	vim.cmd.colorscheme(color)
--- end
-
 return {
 	{
 		"ellisonleao/gruvbox.nvim",
@@ -31,6 +27,8 @@ return {
 				dim_inactive = false,
 				transparent_mode = true,
 			})
+
+			vim.cmd("colorscheme gruvbox")
 		end,
 	},
 }

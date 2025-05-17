@@ -28,8 +28,6 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
-				"rust_analyzer",
-				"gopls",
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
@@ -61,8 +59,6 @@ return {
 							Lua = {
 								format = {
 									enable = true,
-									-- Put format options here
-									-- NOTE: the value should be STRING!!
 									defaultConfig = {
 										indent_style = "space",
 										indent_size = "2",
