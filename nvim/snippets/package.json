@@ -1,0 +1,20 @@
+{
+    "name": "Snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "go",
+                "path": "./snippets/go.json"
+            },
+            {
+                "language": "robot",
+                "path": "./snippets/robot.json"
+            },
+            {
+                "language": "make",
+                "path": "./snippets/makefile.json"
+            }
+        ]
+    }
+}
+

@@ -7,8 +7,16 @@ return {
 		dependencies = { "rafamadriz/friendly-snippets" },
 
 		config = function()
+			local custom_snippets_filetypes = { "go", "robot", "make" }
+			local snippet_path = vim.fn.stdpath("config") .. "/snippets/"
+
+			require("luasnip.loaders.from_vscode").lazy_load({ exclude = custom_snippets_filetypes })
+			require("luasnip.loaders.from_vscode").lazy_load({
+				include = custom_snippets_filetypes,
+				paths = { snippet_path },
+			})
+
 			local ls = require("luasnip")
-			ls.filetype_extend("javascript", { "jsdoc" })
 
 			vim.keymap.set({ "i" }, "<C-s>e", function()
 				ls.expand()
@@ -27,7 +35,6 @@ return {
 					ls.change_choice(1)
 				end
 			end, { silent = true })
-
 		end,
 	},
 }
