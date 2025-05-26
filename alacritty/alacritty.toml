@@ -1,3 +1,6 @@
+[general]
+import = [ "gruvbox_dark.toml" ]
+
 [font]
 normal = { family = "BlexMono Nerd Font" }
 bold = { family = "BlexMono Nerd Font" }
