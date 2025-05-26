@@ -94,8 +94,8 @@ fi
 
 
 # Aliases
-alias l="ls -l --color=auto"
-alias ll="ls -lA --color=auto"
+alias l="ls -lh --color=auto"
+alias ll="ls -lAh --color=auto"
 
 
 files_to_source=(
