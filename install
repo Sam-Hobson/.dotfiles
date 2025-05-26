@@ -1,34 +1,49 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
+declare -A applications
 
-if [[ -z $STOW_FOLDERS ]]; then
-  # STOW_FOLDERS="bin\\.local/bin kitty\\.config/kitty nvim\\.config/nvim tmux\\ zsh\\ alacritty\\.config/alacritty"
-  STOW_FOLDERS="alacritty\\.config/alacritty"
+applications["$(realpath ./bin)"]="$HOME/.local/bin/"
+applications["$(realpath ./kitty)"]="$HOME/.config/kitty/"
+applications["$(realpath ./nvim)"]="$HOME/.config/nvim/"
+applications["$(realpath ./nvim_old)"]="$HOME/.config/nvim/"
+applications["$(realpath ./nvim_old_old)"]="$HOME/.config/nvim/"
+applications["$(realpath ./npm)"]="$HOME/"
+applications["$(realpath ./tmux)"]="$HOME/"
+applications["$(realpath ./zsh)"]="$HOME/"
+applications["$(realpath ./alacritty)"]="$HOME/.config/alacritty/"
+
+errorMessage() {
+	echo "Usage: install [APPLICATION DIRECTORY]..."
+	echo "  eg: ./install ./zsh ./nvim"
+	echo
+}
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+current_dir="$(pwd)"
+
+if [[ ! "$script_dir" == "$current_dir" ]]; then
+	echo "This script must be run from the .dotfiles directory"
+	exit 1
 fi
 
-if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/.dotfiles
+if ! command -v stow >/dev/null 2>&1; then
+	echo "Please install stow before proceeding"
+	exit 1
 fi
 
+if [[ $# < 1 ]]; then
+	errorMessage
+	exit 1
+fi
 
-pushd $DOTFILES
-
-echo $STOW_FOLDERS
-
-
-for pair in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-    folder="${pair%%\\*}"
-    dest="${pair##*\\}"
-
-    mkdir ~/$dest 2> /dev/null
-
-    echo "stow $folder to $dest"
-
-    # error=$((stow -R -t ~/$dest $folder) 2>&1 >/dev/null)
-
-    stow -t ~/$dest $folder
+for arg in "$@"; do
+	real_arg_path=$(realpath $arg)
+	if [[ -n "${applications[$real_arg_path]}" ]]; then
+		config_path=$(eval echo "${applications[$real_arg_path]}")
+		mkdir -p "$config_path" 2>/dev/null
+		echo "stowing $real_arg_path to $config_path"
+		stow -t "$config_path" $(basename "$real_arg_path")
+	else
+		echo "Error: $arg not found"
+	fi
 done
-
-popd
-
