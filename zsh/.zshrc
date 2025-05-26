@@ -87,6 +87,12 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 
+# Set up fzf key bindings and fuzzy completion
+if [ command -v fzf >/dev/null 2>&1 ]; then
+	source <(fzf --zsh)
+fi
+
+
 # Aliases
 alias l="ls -l --color=auto"
 alias ll="ls -lA --color=auto"
@@ -94,7 +100,6 @@ alias ll="ls -lA --color=auto"
 
 files_to_source=(
 	$HOME/.p10k.zsh
-	$HOME/.fzf.zsh
 )
 
 for file in "${files_to_source[@]}"; do
