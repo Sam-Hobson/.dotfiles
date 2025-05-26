@@ -114,7 +114,7 @@ return {
 				local opts = { buffer = event.buf }
 
 				vim.keymap.set("n", "K", function()
-					vim.lsp.buf.hover()
+					vim.lsp.buf.hover({ border = "rounded" })
 				end, opts)
 				vim.keymap.set("n", "<leader>cc", function()
 					vim.diagnostic.open_float()
@@ -132,7 +132,7 @@ return {
 					vim.lsp.buf.rename()
 				end, opts)
 				vim.keymap.set("i", "<C-k>", function()
-					vim.lsp.buf.signature_help()
+					vim.lsp.buf.signature_help({ border = "rounded" })
 				end, opts)
 			end,
 		})

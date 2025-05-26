@@ -18,7 +18,7 @@ return {
 				lua = { "stylua" },
 				go = { "gofmt" },
 				nix = { "nixfmt" },
-				lua = { "stylua" },
+				sh = { "shfmt" },
 			},
 		})
 	end,

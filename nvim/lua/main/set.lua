@@ -22,7 +22,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.fileformats = { "unix", "dos" }
 
-vim.opt.statusline = "%<%f %h%m%r%=[ %(%l,%c%V%) ] [ %P ] [ %{&fileformat} ]"
+vim.opt.statusline = "%<%f %h%m%r%=[ %{get(b:,'gitsigns_status','')} ] [ %(%l,%c%V%) ] [ %P ] [ %{&fileformat} ]"
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
