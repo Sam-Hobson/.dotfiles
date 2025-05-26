@@ -8,7 +8,7 @@ else
 	dir=$(find . -type d \( -name .git -o -name node_modules \) -prune -false -o -print | fzf)
 fi
 
-if [ -n "$dir" ]; then 
+if [ -n "$dir" ]; then
 	cd $dir
 else
 	echo "Error: dir not defined"

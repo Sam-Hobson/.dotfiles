@@ -1,8 +1,18 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/share/npm/bin:$PATH
+paths_to_add=(
+	/usr/local/bin
+	/usr/local/go/bin
+	$HOME/.local/bin
+	$HOME/.local/share/npm/bin
+)
 
-export PATH=$PATH:/usr/local/go/bin
+for dir in "${paths_to_add[@]}"; do
+	dir_expanded=$(eval echo "$dir")
+	# Check if that path exists and isn't already in $PATH
+	if [ -d "$dir_expanded" ] && [[ ":$PATH:" != *":$dir_expanded:"* ]]; then
+		export PATH="$PATH:$dir_expanded"
+	fi
+done
+
 
 export EDITOR='nvim'
 
@@ -60,16 +70,15 @@ function tmuxSessionizer {
     tmux-sessionizer
 }
 
-function fdSearch {
-    dir=$(fdfind . ./ -td --exclude ".git" --exclude "node_modules" | fzf)
-    [ -n "$dir" ] && cd $dir
+function gotoDir {
+	. gotodir
 }
 
 zle -N tmuxSessionizer
-zle -N fdSearch
+zle -N gotoDir
 
 bindkey '^f' tmuxSessionizer
-bindkey '^a' fdSearch
+bindkey '^a' gotoDir
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[[Z' reverse-menu-complete
@@ -79,17 +88,18 @@ bindkey "^[[1;5D" backward-word
 
 
 # Aliases
-alias l="exa -l"
-alias ll="exa -la"
+alias l="ls -l --color=auto"
+alias ll="ls -lA --color=auto"
 
-alias icat="kitty +kitten icat --background=white"
 
-alias cd.="cd .."
-alias cd..="cd ../.."
-alias cd...="cd ../../.."
-alias cd....="cd ../../../.."
-alias cd.....="cd ../../../../.."
+files_to_source=(
+	$HOME/.p10k.zsh
+	$HOME/.fzf.zsh
+)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+for file in "${files_to_source[@]}"; do
+	file_expanded=$(eval echo "$file")
+	if [ -f "$file_expanded" ]; then
+		source "$file_expanded"
+	fi
+done
