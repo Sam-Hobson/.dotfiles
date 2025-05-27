@@ -6,7 +6,7 @@
     },
     "if err != nil": {
         "prefix": "iferr",
-        "body": "if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}",
+        "body": "if err != nil {\n\treturn ${2:nil}, ${3:err}\n}",
         "description": "Snippet for if err != nil"
     },
     "if key in a map": {
@@ -17,16 +17,6 @@
         "prefix": "init",
         "body": "func init() {\n\t$1\n}",
         "description": "Snippet for init function"
-    },
-    "function": {
-        "prefix": "fn",
-        "body": "func $1($2)$3 {\n\t$4\n}",
-        "description": "Snippet for creating a function function"
-    },
-    "type function": {
-        "prefix": "tfn",
-        "body": "func ($1) $2($3)$4 {\n\t$5\n}",
-        "description": "Snippet for creating a type function function"
     },
     "for n statement": {
         "prefix": "fori",
