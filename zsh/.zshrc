@@ -45,7 +45,7 @@ autoload -Uz compinit && compinit
 # Set options
 setopt extendedglob
 
-HISTSIZE=5000
+HISTSIZE=50000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
