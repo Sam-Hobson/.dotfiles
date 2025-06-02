@@ -92,6 +92,10 @@ if command -v fzf >/dev/null 2>&1; then
 	source <(fzf --zsh)
 fi
 
+# Set up rbenv (the ruby environment manager, similar to pyenv)
+if command -v rbenv >/dev/null 2>&1; then
+	eval "$(rbenv init -)"
+fi
 
 # Aliases
 alias l="ls -lh --color=auto"
