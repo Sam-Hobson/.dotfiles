@@ -19,6 +19,15 @@ return {
 				go = { "gofmt" },
 				nix = { "nixfmt" },
 				sh = { "shfmt" },
+
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				vue = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
+				json = { "prettier" },
+				yaml = { "prettier" },
+				markdown = { "prettier" },
 			},
 		})
 	end,
