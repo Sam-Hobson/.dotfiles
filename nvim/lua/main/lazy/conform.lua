@@ -19,6 +19,7 @@ return {
 				go = { "gofmt" },
 				nix = { "nixfmt" },
 				sh = { "shfmt" },
+				ruby = { "rubyfmt" },
 
 				javascript = { "prettier" },
 				typescript = { "prettier" },
