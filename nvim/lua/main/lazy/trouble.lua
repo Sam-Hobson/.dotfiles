@@ -41,6 +41,18 @@ return {
 				"<cmd>Trouble lsp_implementations toggle focus=true auto_refresh=false<cr>",
 				{ silent = true, noremap = true }
 			)
+
+			local open_with_trouble = require("trouble.sources.telescope").open
+			local telescope = require("telescope")
+
+			telescope.setup({
+				defaults = {
+					mappings = {
+						i = { ["<c-q>"] = open_with_trouble },
+						n = { ["<c-q>"] = open_with_trouble },
+					},
+				},
+			})
 		end,
 	},
 }
