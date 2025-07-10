@@ -1,5 +1,6 @@
 [general]
-import = [ "gruvbox_dark.toml" ]
+# import = [ "gruvbox_dark.toml" ]
+import = [ "vague.toml" ]
 
 [font]
 normal = { family = "BlexMono Nerd Font" }
