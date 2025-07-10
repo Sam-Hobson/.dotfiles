@@ -12,7 +12,7 @@ vim.opt.cursorline = true
 
 vim.opt.guicursor = ""
 
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 
 vim.opt.wrap = false
 
