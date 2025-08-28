@@ -2,7 +2,7 @@ return {
 	{
 		"ellisonleao/gruvbox.nvim",
 		name = "gruvbox",
-		enabled = false,
+		enabled = true,
 		config = function()
 			require("gruvbox").setup({
 				terminal_colors = true, -- add neovim terminal colors
@@ -34,7 +34,7 @@ return {
 	},
 	{
 		"vague2k/vague.nvim",
-		enabled = true,
+		enabled = false,
 		config = function()
 			require("vague").setup({
 				transparent = true
