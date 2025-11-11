@@ -1,10 +1,11 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- By default this is handled by guess-indent
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
@@ -12,7 +13,7 @@ vim.opt.cursorline = true
 
 vim.opt.guicursor = ""
 
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 vim.opt.wrap = false
 
@@ -48,3 +49,10 @@ vim.cmd([[ set nofoldenable ]])
 vim.opt.spelllang = "en_au"
 vim.opt.spell = true
 vim.opt.spelloptions = "camel"
+
+-- List chars (show tabs + spaces)
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = '→ ',
+  leadmultispace = '·   ',
+}

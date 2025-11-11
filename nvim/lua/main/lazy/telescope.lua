@@ -34,6 +34,20 @@ return {
 
 		vim.keymap.set("n", "<leader>fg", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end)
+		end, { desc = "Grep" })
+
+		vim.keymap.set("n", "<leader>fG", function()
+			builtin.grep_string({
+				search = vim.fn.input("Grep (hidden) > "),
+				hidden = true,
+				additional_args = function(_)
+					return { "--hidden", "--glob", "!**/.git/*" }
+				end,
+			})
+		end, { desc = "Grep (including hidden files)" })
+
+		vim.keymap.set("n", "<leader>fl", function()
+			builtin.live_grep()
+		end, { desc = "Live grep" })
 	end,
 }
