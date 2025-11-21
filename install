@@ -11,6 +11,7 @@ applications["$(realpath ./npm)"]="$HOME/"
 applications["$(realpath ./tmux)"]="$HOME/"
 applications["$(realpath ./zsh)"]="$HOME/"
 applications["$(realpath ./alacritty)"]="$HOME/.config/alacritty/"
+applications["$(realpath ./ghostty)"]="$HOME/.config/ghostty/"
 
 errorMessage() {
 	echo "Usage: install [APPLICATION DIRECTORY]..."

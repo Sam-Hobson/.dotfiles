@@ -1,0 +1,7 @@
+theme = GruvboxDarkHard
+background = 000000
+font-family = "BlexMono Nerd Font"
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+title = " "

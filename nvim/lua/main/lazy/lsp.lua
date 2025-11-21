@@ -70,6 +70,22 @@ return {
 						},
 					})
 				end,
+				["gopls"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.gopls.setup({
+						settings = {
+							gopls = {
+								-- gofumpt = true,
+								staticcheck = true,
+								completeUnimported = true,
+								usePlaceholders = true,
+								analyses = {
+									unusedparams = true,
+								},
+							},
+						},
+					})
+				end,
 				-- vtsls = function()
 				-- 	local lspconfig = require("lspconfig")
 				-- 	local mason_registry = require("mason-registry")

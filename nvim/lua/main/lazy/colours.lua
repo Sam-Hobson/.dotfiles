@@ -37,9 +37,17 @@ return {
 		enabled = false,
 		config = function()
 			require("vague").setup({
-				transparent = true
+				transparent = true,
 			})
 			vim.cmd("colorscheme vague")
 		end,
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		enabled = true,
+		config = function ()
+			vim.opt.termguicolors = true
+			require('nvim-highlight-colors').setup({})
+		end
 	},
 }
