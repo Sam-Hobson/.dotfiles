@@ -43,11 +43,47 @@ return {
 		end,
 	},
 	{
-		"brenoprata10/nvim-highlight-colors",
-		enabled = true,
-		config = function ()
-			vim.opt.termguicolors = true
-			require('nvim-highlight-colors').setup({})
-		end
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
+		opts = {
+			user_default_options = {
+				RGB = true, -- #RGB hex codes
+				RGBA = true, -- #RGBA hex codes
+				RRGGBB = true, -- #RRGGBB hex codes
+				RRGGBBAA = false, -- #RRGGBBAA hex codes
+				AARRGGBB = false, -- 0xAARRGGBB hex codes
+				rgb_fn = true, -- CSS rgb() and rgba() functions
+				hsl_fn = true, -- CSS hsl() and hsla() functions
+				oklch_fn = true, -- CSS oklch() function
+				css = true, -- Enable all CSS *features*:
+				-- names, RGB, RGBA, RRGGBB, RRGGBBAA, AARRGGBB, rgb_fn, hsl_fn, oklch_fn
+				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn, oklch_fn
+				-- Tailwind colors.  boolean|'normal'|'lsp'|'both'.  True sets to 'normal'
+				tailwind = true, -- Enable tailwind colors
+				tailwind_opts = { -- Options for highlighting tailwind names
+					update_names = false, -- When using tailwind = 'both', update tailwind names from LSP results.  See tailwind section
+				},
+				-- parsers can contain values used in `user_default_options`
+				sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+				xterm = false, -- Enable xterm 256-color codes (#xNN, \e[38;5;NNNm)
+				-- Highlighting mode.  'background'|'foreground'|'virtualtext'
+				mode = "background", -- Set the display mode
+				-- Virtualtext character to use
+				virtualtext = "■",
+				-- Display virtualtext inline with color.  boolean|'before'|'after'.  True sets to 'after'
+				virtualtext_inline = true,
+				-- Virtualtext highlight mode: 'background'|'foreground'
+				virtualtext_mode = "foreground",
+				-- update color values even if buffer is not focused
+				-- example use: cmp_menu, cmp_docs
+				always_update = false,
+				-- hooks to invert control of colorizer
+				hooks = {
+					-- called before line parsing.  Accepts boolean or function that returns boolean
+					-- see hooks section below
+					disable_line_highlight = false,
+				},
+			},
+		},
 	},
 }
