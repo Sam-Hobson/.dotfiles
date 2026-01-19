@@ -20,6 +20,7 @@ return {
 				nix = { "nixfmt" },
 				sh = { "shfmt" },
 				ruby = { "rufo" },
+				c = { "clang-format" },
 
 				javascript = { "prettier" },
 				typescript = { "prettier" },
