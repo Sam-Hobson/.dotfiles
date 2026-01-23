@@ -1,0 +1,2 @@
+private_zsh_config/*
+!private_zsh_config/.gitkeep

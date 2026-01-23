@@ -3,6 +3,7 @@ paths_to_add=(
 	/usr/local/go/bin
 	$HOME/.local/bin
 	$HOME/.local/share/npm/bin
+	/opt/homebrew/opt/sqlite/bin
 )
 
 for dir in "${paths_to_add[@]}"; do
@@ -42,6 +43,12 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit
 
 
+# Open CMD buffer in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^g' edit-command-line
+
+
 # Set options
 setopt extendedglob
 
@@ -77,8 +84,10 @@ function gotoDir {
 zle -N tmuxSessionizer
 zle -N gotoDir
 
-bindkey '^f' tmuxSessionizer
-bindkey '^a' gotoDir
+bindkey '^x^f' tmuxSessionizer
+bindkey '^x^a' gotoDir
+bindkey '^x^u' undo
+bindkey '^x^r' redo
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[[Z' reverse-menu-complete
@@ -103,7 +112,8 @@ alias ll="ls -lAh --color=auto"
 
 
 files_to_source=(
-	$HOME/.p10k.zsh
+	${0:a:h}/.p10k.zsh
+	${0:a:h}/private_zsh_config/*(N)
 )
 
 for file in "${files_to_source[@]}"; do
@@ -112,3 +122,11 @@ for file in "${files_to_source[@]}"; do
 		source "$file_expanded"
 	fi
 done
+
+# pnpm
+export PNPM_HOME="/Users/sam/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
