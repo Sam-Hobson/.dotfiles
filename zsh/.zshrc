@@ -1,9 +1,6 @@
 paths_to_add=(
 	/usr/local/bin
-	/usr/local/go/bin
 	$HOME/.local/bin
-	$HOME/.local/share/npm/bin
-	/opt/homebrew/opt/sqlite/bin
 )
 
 for dir in "${paths_to_add[@]}"; do
@@ -101,11 +98,6 @@ if command -v fzf >/dev/null 2>&1; then
 	source <(fzf --zsh)
 fi
 
-# Set up rbenv (the ruby environment manager, similar to pyenv)
-if command -v rbenv >/dev/null 2>&1; then
-	eval "$(rbenv init -)"
-fi
-
 # Aliases
 alias l="ls -lh --color=auto"
 alias ll="ls -lAh --color=auto"
@@ -122,11 +114,3 @@ for file in "${files_to_source[@]}"; do
 		source "$file_expanded"
 	fi
 done
-
-# pnpm
-export PNPM_HOME="/Users/sam/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
