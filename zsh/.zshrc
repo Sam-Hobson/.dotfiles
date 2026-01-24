@@ -109,6 +109,9 @@ fi
 alias l="ls -lh --color=auto"
 alias ll="ls -lAh --color=auto"
 
+# Add some shortcuts
+hash -d df=~/.dotfiles/
+
 
 files_to_source=(
 	# ${0:a:h}/.p10k.zsh

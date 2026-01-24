@@ -2,7 +2,7 @@ return {
 	{
 		"ellisonleao/gruvbox.nvim",
 		name = "gruvbox",
-		enabled = true,
+		enabled = false,
 		config = function()
 			require("gruvbox").setup({
 				terminal_colors = true, -- add neovim terminal colors
