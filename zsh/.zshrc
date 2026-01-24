@@ -22,9 +22,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 
 # Add PL10K command prompt
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-[[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+# [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -66,6 +65,14 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 WORDCHARS=""
 
+# Display information such as current path in TMUX status bar, so refresh it frequently
+if [ -n "$TMUX" ]; then
+    precmd() {
+        tmux refresh-client -S
+    }
+fi
+
+PROMPT='%?%(1j. %j.) $ '
 
 # Key bindings
 function tmuxSessionizer {
@@ -104,7 +111,7 @@ alias ll="ls -lAh --color=auto"
 
 
 files_to_source=(
-	${0:a:h}/.p10k.zsh
+	# ${0:a:h}/.p10k.zsh
 	${0:a:h}/private_zsh_config/*(N)
 )
 
