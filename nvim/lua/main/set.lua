@@ -50,8 +50,6 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
-
 vim.opt.mousescroll = "ver:1,hor:0"
 
 -- Folding
@@ -67,6 +65,6 @@ vim.opt.spelloptions = "camel"
 -- List chars (show tabs + spaces)
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = '→ ',
+  tab = '  ',
   leadmultispace = '·   ',
 }

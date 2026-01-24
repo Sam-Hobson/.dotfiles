@@ -32,6 +32,7 @@ return {
 	{
 		"Mr-LLLLL/cool-chunk.nvim",
 		event = { "CursorHold", "CursorHoldI" },
+		enabled = false,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
