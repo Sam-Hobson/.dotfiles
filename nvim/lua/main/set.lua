@@ -13,8 +13,6 @@ vim.opt.cursorline = true
 
 vim.opt.guicursor = ""
 
-vim.opt.cmdheight = 1
-
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
@@ -33,8 +31,24 @@ function SearchCount()
   end
   return string.format("[%d/%d]", result.current, result.total)
 end
-vim.opt.statusline = "%<%f %h%m%r%=%{v:lua.SearchCount()}  %{get(b:,'gitsigns_status','')}  %(%l,%c%V%)  %P  %{&fileformat}"
+function Mode()
+  local modes = {
+    n = "NORMAL",
+    i = "INSERT",
+    v = "VISUAL",
+    V = "V-LINE",
+    [""] = "V-BLOCK",
+    c = "COMMAND",
+    R = "REPLACE",
+    t = "TERMINAL",
+  }
+  return modes[vim.fn.mode()] or vim.fn.mode()
+end
+vim.opt.statusline = "%{v:lua.Mode()}  %<%f %h%m%r%=%{v:lua.SearchCount()}  %{get(b:,'gitsigns_status','')}  %(%l,%c%V%)  %P  %{&fileformat}"
 vim.opt.cmdheight = 0
+vim.opt.showcmd = false
+vim.opt.ruler = false
+vim.opt.shortmess:append("cFWIsS")
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -43,6 +57,7 @@ vim.opt.termguicolors = true
 -- Set the background to be transparent
 vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
 vim.api.nvim_set_hl(0, "NonText", { bg = "NONE", ctermbg = "NONE" })
+vim.cmd("colorscheme lunaperche")
 
 vim.opt.scrolloff = 8
 -- vim.opt.signcolumn = "yes"
