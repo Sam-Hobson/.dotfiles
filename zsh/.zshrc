@@ -72,7 +72,7 @@ if [ -n "$TMUX" ]; then
     }
 fi
 
-PROMPT='%?%(1j. %j.) $ '
+PROMPT='%c %?%(1j. %j.) %% '
 
 # Key bindings
 function tmuxSessionizer {
