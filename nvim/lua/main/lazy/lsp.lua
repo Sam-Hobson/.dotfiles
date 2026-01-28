@@ -76,6 +76,7 @@ return {
 					end, opts)
 					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "<leader>cc", vim.diagnostic.open_float, opts)
+					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 					vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 					vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
 				end,
