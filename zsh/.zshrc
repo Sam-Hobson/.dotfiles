@@ -114,8 +114,7 @@ hash -d df=~/.dotfiles/
 
 
 files_to_source=(
-	# ${0:a:h}/.p10k.zsh
-	${0:a:h}/private_zsh_config/*(N)
+	${ZDOTDIR:-$HOME}/private_zsh_config/*(N)
 )
 
 for file in "${files_to_source[@]}"; do
