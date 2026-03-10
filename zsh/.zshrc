@@ -108,6 +108,7 @@ fi
 # Aliases
 alias l="ls -lh --color=auto"
 alias ll="ls -lAh --color=auto"
+alias gwt="git worktree"
 
 # Add some shortcuts
 hash -d df=~/.dotfiles/
