@@ -5,21 +5,33 @@
 
 current_session=$(tmux display-message -p '#S')
 
-sessions=$(tmux ls -F '#S' | grep -v "^${current_session}$")
+sessions=$(tmux ls -F '#S')
 
 if [[ -z "$sessions" ]]; then
-    echo "No other sessions to kill"
-    read -n 1 -s -r -p "Press any key to close"
     exit 0
 fi
 
-selected=$(echo "$sessions" | fzf --multi --prompt="kill session (tab to multi-select)> " --height=40%)
+selected=$(echo "$sessions" | fzf --multi --no-sort --tac --prompt="kill session (tab to multi-select)> " --height=40%)
 
 if [[ -z "$selected" ]]; then
     exit 0
 fi
 
+killing_current=false
 while IFS= read -r session; do
+    if [[ "$session" == "$current_session" ]]; then
+        killing_current=true
+        continue
+    fi
     tmux kill-session -t="$session"
     echo "Killed: $session"
 done <<< "$selected"
+
+if [[ "$killing_current" == true ]]; then
+    # Switch to another session if one exists, otherwise detach (leaves tmux)
+    remaining=$(tmux ls -F '#S' 2>/dev/null | grep -v "^${current_session}$" | head -1)
+    if [[ -n "$remaining" ]]; then
+        tmux switch-client -t "$remaining"
+    fi
+    tmux kill-session -t="$current_session"
+fi
