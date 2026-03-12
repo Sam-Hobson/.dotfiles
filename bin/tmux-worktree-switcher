@@ -34,16 +34,15 @@ fi
 # Extract the path (first field)
 selected_path=$(echo "$selected" | awk '{print $1}')
 
-# Derive session name from repo name + worktree directory name
-repo_name=$(basename "$(git rev-parse --show-toplevel)" | tr . _)
-worktree_dir=$(basename "$selected_path" | tr . _)
+# Derive session name from the branch name
+branch=$(echo "$selected" | grep -o '\[.*\]' | tr -d '[]' | tr . _)
 
-# For the main worktree, just use the repo name; for others, use repo/branch
-if [[ "$selected_path" == "$(git worktree list --porcelain | head -1 | sed 's/^worktree //')" ]]; then
-    selected_name="$repo_name"
-else
-    selected_name="${repo_name}/${worktree_dir}"
+# Fallback to directory name if no branch found (e.g. detached HEAD)
+if [[ -z "$branch" ]]; then
+    branch=$(basename "$selected_path" | tr . _)
 fi
+
+selected_name="$branch"
 
 tmux_running=$(pgrep tmux)
 

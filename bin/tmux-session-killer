@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Kill tmux sessions from within tmux using fzf multi-select.
+# Excludes the current session so you don't kill yourself.
+
+current_session=$(tmux display-message -p '#S')
+
+sessions=$(tmux ls -F '#S' | grep -v "^${current_session}$")
+
+if [[ -z "$sessions" ]]; then
+    echo "No other sessions to kill"
+    read -n 1 -s -r -p "Press any key to close"
+    exit 0
+fi
+
+selected=$(echo "$sessions" | fzf --multi --prompt="kill session (tab to multi-select)> " --height=40%)
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+while IFS= read -r session; do
+    tmux kill-session -t="$session"
+    echo "Killed: $session"
+done <<< "$selected"
