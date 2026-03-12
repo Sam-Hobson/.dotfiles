@@ -11,7 +11,7 @@ if [[ -z "$sessions" ]]; then
     exit 0
 fi
 
-selected=$(echo "$sessions" | fzf --multi --no-sort --tac --prompt="kill session (tab to multi-select)> " --height=40%)
+selected=$(echo "$sessions" | fzf --multi --no-sort --tac --prompt="kill session (tab to multi-select)> " --height=100%)
 
 if [[ -z "$selected" ]]; then
     exit 0

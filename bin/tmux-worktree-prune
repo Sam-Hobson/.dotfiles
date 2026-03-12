@@ -4,6 +4,7 @@
 
 if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "Not in a git repository"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
     exit 1
 fi
 
@@ -17,6 +18,7 @@ elif git show-ref --verify --quiet refs/heads/master; then
     main_branch="master"
 else
     echo "Could not find main or master branch"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
     exit 1
 fi
 
@@ -69,6 +71,7 @@ prunable=$(echo "$prunable" | sed '/^$/d')
 
 if [[ -z "$prunable" ]]; then
     echo "No worktrees with branches merged into $main_branch (checked regular, squash, and rebase merges)"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
     exit 0
 fi
 
@@ -80,7 +83,7 @@ echo
 if [[ "$1" == "--all" ]]; then
     selected="$prunable"
 else
-    selected=$(echo "$prunable" | fzf --multi --prompt="select to prune (tab to multi-select)> " --height=40%)
+    selected=$(echo "$prunable" | fzf --multi --prompt="select to prune (tab to multi-select)> " --height=100%)
 fi
 
 if [[ -z "$selected" ]]; then

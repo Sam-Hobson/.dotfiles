@@ -6,6 +6,7 @@
 # Must be in a git repo
 if ! git rev-parse --git-dir > /dev/null 2>&1; then
     echo "Not in a git repository"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
     exit 1
 fi
 
@@ -14,6 +15,7 @@ worktrees=$(git worktree list)
 
 if [[ -z "$worktrees" ]]; then
     echo "No worktrees found"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
     exit 1
 fi
 
@@ -21,41 +23,38 @@ fi
 worktree_count=$(echo "$worktrees" | wc -l | tr -d ' ')
 if [[ "$worktree_count" -eq 1 ]]; then
     echo "Only one worktree exists. Create more with: git worktree add"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
     exit 0
 fi
 
+# Build display list: branch name (or folder name) mapped to full path
+declare -A worktree_map
+display_list=""
+while IFS= read -r line; do
+    wt_path=$(echo "$line" | awk '{print $1}')
+    branch=$(echo "$line" | grep -o '\[.*\]' | tr -d '[]')
+    if [[ -z "$branch" ]]; then
+        branch=$(basename "$wt_path")
+    fi
+    worktree_map["$branch"]="$wt_path"
+    display_list+="$branch"$'\n'
+done <<< "$worktrees"
+display_list=$(echo "$display_list" | sed '/^$/d')
+
 # Use fzf to pick a worktree
-selected=$(echo "$worktrees" | fzf --prompt="worktree> " --height=40%)
+selected=$(echo "$display_list" | fzf --prompt="worktree> " --height=100%)
 
 if [[ -z "$selected" ]]; then
     exit 0
 fi
 
-# Extract the path (first field)
-selected_path=$(echo "$selected" | awk '{print $1}')
+selected_path="${worktree_map[$selected]}"
+selected_name=$(echo "$selected" | tr . _)
 
-# Derive session name from the branch name
-branch=$(echo "$selected" | grep -o '\[.*\]' | tr -d '[]' | tr . _)
-
-# Fallback to directory name if no branch found (e.g. detached HEAD)
-if [[ -z "$branch" ]]; then
-    branch=$(basename "$selected_path" | tr . _)
-fi
-
-selected_name="$branch"
-
-tmux_running=$(pgrep tmux)
-
-# If tmux is not running at all
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s "$selected_name" -c "$selected_path"
-    exit 0
-fi
-
-# If tmux doesn't have a session for this worktree, create one
+# Create the session if it doesn't exist (always detached)
 if ! tmux has-session -t="$selected_name" 2> /dev/null; then
     tmux new-session -ds "$selected_name" -c "$selected_path"
 fi
 
-# Attach or switch to session
-tmux attach -t "$selected_name" 2> /dev/null || tmux switch-client -t "$selected_name"
+# Switch the parent client to the session (works from inside a popup)
+tmux switch-client -t "$selected_name"
