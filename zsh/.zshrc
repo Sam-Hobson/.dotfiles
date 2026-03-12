@@ -1,6 +1,7 @@
 paths_to_add=(
 	/usr/local/bin
 	$HOME/.local/bin
+	$HOME/.local/bin/private_bin
 )
 
 for dir in "${paths_to_add[@]}"; do
