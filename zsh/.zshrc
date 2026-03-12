@@ -82,22 +82,14 @@ function tmuxSessionizer {
     tmux-sessionizer
 }
 
-function tmuxWorktreeSwitcher {
-    exec </dev/tty
-    exec <&1
-    tmux-worktree-switcher
-}
-
 function gotoDir {
 	. gotodir
 }
 
 zle -N tmuxSessionizer
-zle -N tmuxWorktreeSwitcher
 zle -N gotoDir
 
 bindkey '^x^f' tmuxSessionizer
-bindkey '^x^w' tmuxWorktreeSwitcher
 bindkey '^x^a' gotoDir
 bindkey '^x^u' undo
 bindkey '^x^r' redo
