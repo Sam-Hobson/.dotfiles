@@ -33,7 +33,7 @@ is_merged() {
     local merge_base branch_tip
     merge_base=$(git merge-base "$main_branch" "$branch" 2>/dev/null) || return 1
     branch_tip=$(git rev-parse "$branch" 2>/dev/null) || return 1
-    [[ "$branch_tip" == "$merge_base" ]] && return 1
+    [[ "$branch_tip" == "$merge_base" ]] && return 0
 
     # Regular merge: branch tip is an ancestor of main
     if git merge-base --is-ancestor "$branch" "$main_branch" 2>/dev/null; then
@@ -45,6 +45,14 @@ is_merged() {
     local upstream
     upstream=$(git for-each-ref --format='%(upstream:track)' "refs/heads/$branch")
     if [[ "$upstream" == "[gone]" ]]; then
+        return 0
+    fi
+
+    # Squash/rebase merge: check if the branch's changes are already in main
+    # by comparing the branch tree against main — if merging would produce no diff, it's merged
+    local merge_base
+    merge_base=$(git merge-base "$main_branch" "$branch" 2>/dev/null) || return 1
+    if git diff --quiet "$main_branch"..."$branch" 2>/dev/null; then
         return 0
     fi
 
@@ -94,12 +102,20 @@ while IFS= read -r line; do
     wt_path=$(echo "$line" | awk '{print $1}')
     wt_dir=$(basename "$wt_path" | tr . _)
     wt_branch=$(git worktree list | grep "^${wt_path} " | sed 's/.*\[//' | sed 's/\]//')
-    session_name="${repo_name}/${wt_dir}"
+    session_name="${wt_dir}"
 
     echo "Removing worktree: $wt_path (branch: $wt_branch)"
 
     # Kill tmux session if it exists
     if tmux has-session -t="$session_name" 2> /dev/null; then
+        # If we're currently in this session, switch to another one first
+        current_session=$(tmux display-message -p '#S' 2>/dev/null)
+        if [[ "$current_session" == "$session_name" ]]; then
+            next_session=$(tmux list-sessions -F '#S' | grep -v "^${session_name}$" | head -1)
+            if [[ -n "$next_session" ]]; then
+                tmux switch-client -t "$next_session"
+            fi
+        fi
         tmux kill-session -t="$session_name"
         echo "  Killed tmux session: $session_name"
     fi
