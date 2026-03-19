@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Tag the current tmux session with a status prefix.
+# Selecting a tag replaces any existing tag. "No tag" removes it.
+
+if [[ -z "$TMUX" ]]; then
+    echo "Not in a tmux session"
+    exit 1
+fi
+
+current_session=$(tmux display-message -p '#S')
+
+# Strip any existing tag prefix (anything matching [...] at the start)
+base_name=$(echo "$current_session" | sed 's/^\[[^]]*\] *//')
+
+tags=(
+    "No tag"
+    "[TODO]"
+    "[IN PROGRESS]"
+    "[STALLED]"
+"[AWAITING MERGE]"
+    "[BLOCKED]"
+)
+
+selected=$(printf '%s\n' "${tags[@]}" | fzf --prompt="tag> " --height=100%)
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+if [[ "$selected" == "No tag" ]]; then
+    new_name="$base_name"
+else
+    new_name="$selected $base_name"
+fi
+
+if [[ "$new_name" != "$current_session" ]]; then
+    tmux rename-session -t "$current_session" "$new_name"
+fi
