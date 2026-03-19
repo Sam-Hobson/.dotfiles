@@ -36,10 +36,21 @@ while IFS= read -r line; do
     if [[ -z "$branch" ]]; then
         branch=$(basename "$wt_path")
     fi
+    # Skip worktrees that already have a tmux session
+    session_name=$(echo "$branch" | tr . _)
+    if tmux has-session -t="$session_name" 2> /dev/null; then
+        continue
+    fi
     worktree_map["$branch"]="$wt_path"
     display_list+="$branch"$'\n'
 done <<< "$worktrees"
 display_list=$(echo "$display_list" | sed '/^$/d')
+
+if [[ -z "$display_list" ]]; then
+    echo "All worktrees already have tmux sessions"
+    [[ -n "$TMUX_POPUP" ]] && read -n 1 -s -r -p "Press any key to close"
+    exit 0
+fi
 
 # Use fzf to pick a worktree
 selected=$(echo "$display_list" | fzf --prompt="worktree> " --height=100%)
