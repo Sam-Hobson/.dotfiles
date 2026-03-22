@@ -106,18 +106,19 @@ while IFS= read -r line; do
 
     echo "Removing worktree: $wt_path (branch: $wt_branch)"
 
-    # Kill tmux session if it exists
-    if tmux has-session -t="$session_name" 2> /dev/null; then
+    # Find the tmux session — it may have a tag prefix like "[TODO] name"
+    actual_session=$(tmux list-sessions -F '#S' 2>/dev/null | grep -E "^(\[[^]]*\] *)*${session_name}$" | head -1)
+    if [[ -n "$actual_session" ]]; then
         # If we're currently in this session, switch to another one first
         current_session=$(tmux display-message -p '#S' 2>/dev/null)
-        if [[ "$current_session" == "$session_name" ]]; then
-            next_session=$(tmux list-sessions -F '#S' | grep -v "^${session_name}$" | head -1)
+        if [[ "$current_session" == "$actual_session" ]]; then
+            next_session=$(tmux list-sessions -F '#S' | grep -v "^${actual_session}$" | head -1)
             if [[ -n "$next_session" ]]; then
                 tmux switch-client -t "$next_session"
             fi
         fi
-        tmux kill-session -t="$session_name"
-        echo "  Killed tmux session: $session_name"
+        tmux kill-session -t="$actual_session"
+        echo "  Killed tmux session: $actual_session"
     fi
 
     # Remove the worktree
