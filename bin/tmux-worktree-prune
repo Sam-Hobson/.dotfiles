@@ -122,7 +122,7 @@ while IFS= read -r line; do
     fi
 
     # Remove the worktree
-    git worktree remove "$wt_path"
+    git worktree remove --force "$wt_path"
 
     # Delete the branch
     git branch -d "$wt_branch" 2> /dev/null
