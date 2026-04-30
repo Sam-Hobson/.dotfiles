@@ -121,8 +121,14 @@ while IFS= read -r line; do
         echo "  Killed tmux session: $actual_session"
     fi
 
-    # Remove the worktree
-    git worktree remove --force "$wt_path"
+    # Remove the worktree (double --force handles submodules and locked worktrees)
+    git worktree remove --force --force "$wt_path" 2>/dev/null
+
+    # Fall back to rm if git left the directory behind. Guard against empty/root paths.
+    if [[ -d "$wt_path" && -n "$wt_path" && "$wt_path" != "/" && "$wt_path" != "$HOME" && "$wt_path" != "$main_worktree" ]]; then
+        rm -rf "$wt_path"
+        echo "  Removed leftover directory: $wt_path"
+    fi
 
     # Delete the branch
     git branch -d "$wt_branch" 2> /dev/null
