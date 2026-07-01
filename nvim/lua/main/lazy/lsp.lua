@@ -110,6 +110,15 @@ return {
 
 			vim.lsp.config("vue_ls", {})
 
+			-- Run gopls against mise-managed Go. Homebrew's `go` is a base
+			-- version that relies on toolchain auto-switching, which gopls's
+			-- package loader doesn't trigger, so it ignores go.work toolchain
+			-- requirements and fails to load. mise's shims expose the real
+			-- pinned toolchain per project.
+			vim.lsp.config("gopls", {
+				cmd_env = { PATH = vim.fn.expand("~/.local/share/mise/shims") .. ":" .. vim.env.PATH },
+			})
+
 			vim.lsp.enable(require("mason-lspconfig").get_installed_servers())
 		end,
 	},

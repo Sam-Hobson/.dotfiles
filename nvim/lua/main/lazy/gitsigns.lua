@@ -50,6 +50,20 @@ return {
 					gitsigns.blame_line({ full = true })
 				end)
 
+				-- Base against branch fork point (show all changes on this branch)
+				map("n", "<leader>hc", function()
+					local base = vim.fn.systemlist("git merge-base HEAD main")[1]
+					if vim.v.shell_error ~= 0 or not base or base == "" then
+						vim.notify("gitsigns: could not find merge-base with main", vim.log.levels.ERROR)
+						return
+					end
+					gitsigns.change_base(base, true)
+				end, { desc = "Gitsigns: base at branch fork (vs main)" })
+
+				map("n", "<leader>hC", function()
+					gitsigns.reset_base(true)
+				end, { desc = "Gitsigns: reset base (vs index)" })
+
 				map("n", "<leader>hd", gitsigns.diffthis)
 
 				map("n", "<leader>hD", function()
