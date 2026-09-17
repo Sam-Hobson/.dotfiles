@@ -1,7 +1,15 @@
-theme = GruvboxDarkHard
-background = 000000
+theme = Gruvbox Dark Hard
+background = #000000
+
 font-family = "BlexMono Nerd Font"
+font-size = 13
+window-inherit-font-size = false
+
 cursor-style = block
 cursor-style-blink = false
+shell-integration-features = no-cursor
+
 mouse-hide-while-typing = true
+macos-option-as-alt = true
+confirm-close-surface = false
 title = " "

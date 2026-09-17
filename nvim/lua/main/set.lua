@@ -26,7 +26,7 @@ function SearchCount()
     return ""
   end
   local result = vim.fn.searchcount({ maxcount = 9999 })
-  if result.total == 0 then
+  if not result.total or result.total == 0 then
     return ""
   end
   return string.format("[%d/%d]", result.current, result.total)
@@ -68,8 +68,6 @@ vim.opt.updatetime = 50
 vim.opt.mousescroll = "ver:1,hor:0"
 
 -- Folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.cmd([[ set nofoldenable ]])
 
 -- Spelling
