@@ -15,8 +15,30 @@ return {
 			"j-hui/fidget.nvim",
 		},
 		config = function()
+			-- gopls and the Go formatters shell out to `go`, but nvim inherits a
+			-- PATH without one: mise isn't activated in the shell. `mise which`
+			-- walks the config cascade from a directory, so a project's pinned
+			-- toolchain wins and the mise global comes next. When mise resolves
+			-- nothing, leave PATH alone and use the globally installed Go.
+			local function path_with_go(dir)
+				if vim.fn.executable("mise") == 0 then
+					return vim.env.PATH
+				end
+				local res = vim.system({ "mise", "which", "go" }, { cwd = dir, text = true }):wait(5000)
+				if res.code ~= 0 then
+					return vim.env.PATH
+				end
+				return vim.fs.dirname(vim.trim(res.stdout)) .. ":" .. vim.env.PATH
+			end
+
+			-- Mason builds gopls with `go install` and conform runs gofmt, both out
+			-- of nvim's own environment.
+			vim.env.PATH = path_with_go(vim.uv.cwd())
+
 			require("mason").setup()
-			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "gopls" },
+			})
 			require("fidget").setup({})
 
 			local cmp = require("cmp")
@@ -110,13 +132,18 @@ return {
 
 			vim.lsp.config("vue_ls", {})
 
-			-- Run gopls against mise-managed Go. Homebrew's `go` is a base
-			-- version that relies on toolchain auto-switching, which gopls's
-			-- package loader doesn't trigger, so it ignores go.work toolchain
-			-- requirements and fails to load. mise's shims expose the real
-			-- pinned toolchain per project.
+			-- Resolve Go per project root rather than once at startup, since one
+			-- nvim can serve several projects that each pin their own toolchain.
+			-- The mise shims can't do this: they hard-error rather than fall
+			-- through when a project has no mise-managed Go.
 			vim.lsp.config("gopls", {
-				cmd_env = { PATH = vim.fn.expand("~/.local/share/mise/shims") .. ":" .. vim.env.PATH },
+				cmd = function(dispatchers, config)
+					local root = config.root_dir or vim.uv.cwd()
+					return vim.lsp.rpc.start({ "gopls" }, dispatchers, {
+						cwd = root,
+						env = { PATH = path_with_go(root) },
+					})
+				end,
 			})
 
 			vim.lsp.enable(require("mason-lspconfig").get_installed_servers())
